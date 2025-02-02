@@ -47,7 +47,7 @@ export const Navigation = () => {
 								<Link
 									key={i}
 									onClick={() => setActive(i)}
-									className={`${active == i && 'text-blue-600'} w-full  px-5 py-2 mt-2 flex  text-sm duration-200`}
+									className={`${active == i && 'text-blue-600'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
 									to={route.path}>
 									<span className='mr-2'> {route.icon}</span>
 									<span> {route.name}</span>

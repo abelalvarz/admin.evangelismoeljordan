@@ -15,3 +15,9 @@ body {
 .custom-scroll::-webkit-scrollbar {
     display: none;
 }
+
+@layer utilities {
+    .page-container {
+        @apply md:w-[85%] lg:w-[88%] lg:ml-[12%] md:ml-[15%] h-[100vh] p-5 bg-gray-200 overflow-y-hidden overflow-x-hidden
+    }
+}
