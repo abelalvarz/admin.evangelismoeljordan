@@ -1,6 +1,7 @@
 
 export class Report {
     constructor(
+        readonly id: string | null | undefined,
         readonly familyGroup: {
             name: string,
             color: string

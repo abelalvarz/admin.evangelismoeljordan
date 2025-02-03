@@ -26,7 +26,7 @@ export const Navigation = () => {
 				</button>
 			</div>
 			<div
-				className={`fixed bg-gray-100 lg:w-[12%] h-full md:w-[10%] md:ml-0 sm:w-full sm:z-10 ${visible ? 'max-sm:ml-[0] sm:ml-[0]' : 'max-sm:ml-[-100%] sm:ml-[-100%]'} max-sm:w-full max-sm:z-10 duration-500`}      >
+				className={`fixed bg-blue-950 lg:w-[12%] h-full md:w-[10%] md:ml-0 sm:w-full sm:z-10 ${visible ? 'max-sm:ml-[0] sm:ml-[0]' : 'max-sm:ml-[-100%] sm:ml-[-100%]'} max-sm:w-full max-sm:z-10 duration-500`}      >
 				<ul>
 					<button
 						className='absolute top-5 right-10 '
@@ -38,7 +38,7 @@ export const Navigation = () => {
 					</button>
 
 					<div className=' px-5 py-5 '>
-						<h1 className='text-3xl font-bold text-blue-500'>Evangelismo</h1>
+						<h1 className='text-3xl font-bold text-white'>Evangelismo</h1>
 					</div>
 					{
 						AppRoutes.map((route, i) => {
@@ -47,7 +47,7 @@ export const Navigation = () => {
 								<Link
 									key={i}
 									onClick={() => setActive(i)}
-									className={`${active == i && 'text-blue-600'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
+									className={`${active == i ? 'text-white' : 'text-gray-400'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
 									to={route.path}>
 									<span className='mr-2'> {route.icon}</span>
 									<span> {route.name}</span>

@@ -1,25 +1,6 @@
 import { useEffect } from 'react'
 import { Calendar } from 'primereact/calendar'
-import { subDays, startOfDay, endOfDay } from 'date-fns'
-
-const getPeriodTime = (days: number) => {
-    const now = new Date();
-    const currentDayOfWeek = now.getDay();
-
-    const daysSinceLastDay = (currentDayOfWeek >= 6)
-        ? currentDayOfWeek - days
-        : 7 + currentDayOfWeek - days;
-
-    const lastDay = subDays(now, daysSinceLastDay + 7);
-
-    const daysSinceLastTuesday = (currentDayOfWeek >= 5)
-        ? currentDayOfWeek - days
-        : 7 + currentDayOfWeek - days;
-        
-    const thisTuesday = subDays(now, daysSinceLastTuesday);
-
-    return [startOfDay(lastDay), endOfDay(thisTuesday)];
-};
+import { getPeriodTime } from '../../../App/utils/getPeriodOfTime';
 
 interface Props {
     dateRange: []

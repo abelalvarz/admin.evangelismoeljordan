@@ -1,5 +1,7 @@
 import { CreateReportUseCase } from "../Reports/application/useCases/CreateUseCase";
+import { GetAllBetweenPeriodTimeUseCase } from "../Reports/application/useCases/GetAllBetweenPeriodTimeUseCase";
 import { GetAllUseCase } from "../Reports/application/useCases/GetAllUseCase";
+import { GetOneByIdUseCase } from "../Reports/application/useCases/GetOneByIdUseCase";
 import { GetSummaryReportUseCase } from "../Reports/application/useCases/GetSummaryReportUseCase";
 import { GetTotalAttendanceByCategory } from "../Reports/application/useCases/GetTotalAttendanceByCategories";
 import { GetTotalWeekAttendanceUseCase } from "../Reports/application/useCases/GetTotalWeekAttendanceUseCase";
@@ -11,6 +13,8 @@ const repository = new FirebaseReportRepository()
 export const ReportService ={
     create: new CreateReportUseCase(repository),
     getAll: new GetAllUseCase(repository),
+    getAllBetweenPeriodTime: new GetAllBetweenPeriodTimeUseCase(repository),
+    getOneById: new GetOneByIdUseCase(repository),
     getTotalWeekAttendance: new GetTotalWeekAttendanceUseCase(repository),
     getTotalCategoryAttendance: new GetTotalAttendanceByCategory(repository),
     getSummaryReport: new GetSummaryReportUseCase(repository)

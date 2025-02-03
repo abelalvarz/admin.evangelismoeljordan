@@ -20,4 +20,8 @@ body {
     .page-container {
         @apply md:w-[85%] lg:w-[88%] lg:ml-[12%] md:ml-[15%] h-[100vh] p-5 bg-gray-200 overflow-y-hidden overflow-x-hidden
     }
+    .report-detail-line {
+        @apply w-full flex justify-between border-b-[1px] py-2 px-2
+    }
+ 
 }
