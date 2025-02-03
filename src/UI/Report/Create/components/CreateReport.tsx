@@ -8,6 +8,7 @@ import { useToast } from '../../../App/context/ToastContext'
 import { HeadContainer } from '../../../App/styled-components/HeadContainer'
 
 const initialState: Report = {
+    id:null,
     familyGroup: null,
     activeMember: "",
     activeMemberChildren: '',

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ResumeCardComponent } from './component/ResumenCardComponent/ResumeCardComponent'
 import { GraficsComponent } from './component/GraficsComponent/GraficsComponent'
-import { FilterComponents } from './component/FilterComponent/FilterComponents'
 import { FilterDataComponent } from '../App/component/FilterDataComponent'
 
 export const DashboardPage = () => {
