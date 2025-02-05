@@ -41,7 +41,8 @@ export const BarChart = ({label, value, colors}:Props) => {
                     ticks: {
                         color: textColorSecondary,
                         font: {
-                            weight: 300,
+                            weight: 100,
+                            size: 17,
                         display: false
 
                         }
@@ -70,8 +71,8 @@ export const BarChart = ({label, value, colors}:Props) => {
     }, [label, value]);
 
     return (
-        <div className="card px-5 w-full">
-            <Chart type="bar" data={chartData} options={chartOptions} className='w-full h-auto flex justify-center items-center ' />
+        <div className="graph-container" >
+            <Chart type="bar" data={chartData} options={chartOptions} className='graph-content' />
         </div>
     )
 }

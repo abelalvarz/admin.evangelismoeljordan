@@ -1,4 +1,4 @@
-import { Report } from "../../../../Core/Reports/domain/model/Report"
+import { Report } from "../../../../../../Core/Reports/domain/model/Report"
 
 interface Prosp {
     data: Report
@@ -6,7 +6,7 @@ interface Prosp {
 
 export const EvangelismSection = ({ data }: Prosp) => {
     return (
-        <div className="w-full mt-3">
+        <div className="w-full box-border  mt-3 ">
             <h1 className="text-xl font-bold bg-blue-300 rounded-sm pl-2">Evangelizacion</h1>
             <div className="w-full bg-slate-50 rounded-md">
                 <div className="report-detail-line">

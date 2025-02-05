@@ -1,4 +1,4 @@
-import { Report } from "../../../../Core/Reports/domain/model/Report"
+import { Report } from "../../../../../../Core/Reports/domain/model/Report"
 
 interface Props {
     data: Report
@@ -6,7 +6,7 @@ interface Props {
 
 export const OfferingSection = ({ data }: Props) => {
     return (
-        <div className="w-full  mt-3">
+        <div className="w-full box-border  mt-3 ">
             <h1 className="text-xl font-bold rounded-sm bg-yellow-300 pl-2">Ofrenda</h1>
             <div className="w-full bg-slate-50 rounded-md">
                 <div className="report-detail-line">

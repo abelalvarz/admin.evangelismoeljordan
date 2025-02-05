@@ -1,7 +1,7 @@
-import { FullScreenComponent } from '../../styled-component/FullScreenComponent';
 import { TotalAttendanceGrafic } from './TotalAttendanceGrafic';
 import { CategoryAttendanceGrafic } from './CategoryAttendanceGrafic';
-import { CardContainer } from '../../styled-component/CardContainer';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 interface Prosp {
     initialDate: any;
@@ -10,25 +10,28 @@ interface Prosp {
 
 export const GraficsComponent = ({ initialDate, finalDate }: Prosp) => {
     return (
-        <div className='flex justify-between items-center h-[60vh]'>
-            <FullScreenComponent
-                className="w-full flex justify-between items-center h-[60vh] ">
-                <CardContainer
-                    title='Asistencia Total Por Grupo'
-                    className='w-[70%] h-full mr-2 bg-gray-50 rounded-md'
-                    initialDate={initialDate}
-                    finalDate={finalDate}>
-                    <TotalAttendanceGrafic initialDate={initialDate} finalDate={finalDate} />
-                </CardContainer>
-                <CardContainer
-                    title='Categorias'
-                    className='w-[30%] h-full bg-gray-50 rounded-md'
-                    contentClassName=""
-                    initialDate={initialDate}
-                    finalDate={finalDate}>
-                    <CategoryAttendanceGrafic initialDate={initialDate} finalDate={finalDate} />
-                </CardContainer>
-            </FullScreenComponent>
+        <div className='w-full flex justify-between items-center '>
+            <div
+                className="w-full flex justify-between items-center h-[60vh]  ">
+                <div className='w-[70%] h-full flex flex-col justify-center bg-gray-100 p-5 rounded-lg'>
+                    <div className='h-[15%] '>
+                        <h1 className='text-3xl font-bold'>Asistencia Total Por Grupo</h1>
+                        <p>{initialDate && format(initialDate, "EEEE d 'de' MMMM", { locale: es })} a {finalDate && format(finalDate, "EEEE d 'de' MMMM", { locale: es })}</p>
+                    </div>
+                    <div className='h-[85%] flex justify-center items-center '>
+                        <TotalAttendanceGrafic initialDate={initialDate} finalDate={finalDate} />
+                    </div>
+                </div>
+                <div className='ml-2 w-[30%] h-full flex flex-col justify-center bg-gray-100 p-5 rounded-lg'>
+                    <div className='h-[15%] '>
+                        <h1 className='text-3xl font-bold'>Asistencia Por Categorias</h1>
+                        <p>{initialDate && format(initialDate, "EEEE d 'de' MMMM", { locale: es })} a {finalDate && format(finalDate, "EEEE d 'de' MMMM", { locale: es })}</p>
+                    </div>
+                    <div className='h-[85%] flex justify-center items-center '>
+                        <CategoryAttendanceGrafic initialDate={initialDate} finalDate={finalDate} />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

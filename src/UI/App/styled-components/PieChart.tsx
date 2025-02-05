@@ -41,8 +41,8 @@ export const PieChart = ({params}:any) => {
     }, [params]);
 
     return (
-        <div className="w-full h-[45vh] overflow-hidden" >
-            <Chart type="pie" data={chartData} options={chartOptions} className='w-full h-full flex justify-center items-center ' />
+        <div className="graph-container " >
+            <Chart type="pie" data={chartData} options={chartOptions} className='graph-content' />
         </div>
     )
 }

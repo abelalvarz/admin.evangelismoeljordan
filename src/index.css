@@ -23,5 +23,17 @@ body {
     .report-detail-line {
         @apply w-full flex justify-between border-b-[1px] py-2 px-2
     }
+    .title-container {
+        @apply flex justify-between items-end h-[5vh]
+    }
+    .title-content {
+        @apply text-4xl font-bold
+    }
+    .graph-container {
+        @apply w-full h-full box-border overflow-hidden relative
+    }
+    .graph-content {
+        @apply w-full h-full box-border flex justify-center items-center 
+    }
  
 }

@@ -1,18 +1,16 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BiMenu } from "react-icons/bi";
 import { CgClose } from 'react-icons/cg';
 import { AppRoutes } from '../config/AppRoutes';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navigation = () => {
 
 	const [visible, setVisible] = useState(false)
-	const [active, setActive] = useState(0)
+	const location = useLocation()
 
-	useEffect(() => {
-		setVisible(false)
-	}, [active])
+	console.log(location.pathname)
 
 	return (
 		<React.Fragment>
@@ -46,8 +44,7 @@ export const Navigation = () => {
 							return (
 								<Link
 									key={i}
-									onClick={() => setActive(i)}
-									className={`${active == i ? 'text-white' : 'text-gray-400'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
+									className={`${location.pathname === route.path ? 'text-white' : 'text-gray-400'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
 									to={route.path}>
 									<span className='mr-2'> {route.icon}</span>
 									<span> {route.name}</span>

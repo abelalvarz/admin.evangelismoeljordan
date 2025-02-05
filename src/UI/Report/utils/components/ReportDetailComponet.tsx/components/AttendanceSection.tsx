@@ -1,13 +1,13 @@
-import { Report } from "../../../../Core/Reports/domain/model/Report"
+import { Report } from "../../../../../../Core/Reports/domain/model/Report"
 
 interface Prosp {
     data: Report
 }
 export const AttendanceSection = ({ data }: Prosp) => {
     return (
-        <div className="w-full mt-3">
-            <h1 className="text-xl font-bold bg-green-300 rounded-sm pl-2">Asistencia</h1>
-            <div className="w-full bg-slate-50 rounded-md">
+        <div className="w-full box-border  mt-3">
+            <h1 className="text-xl  font-bold bg-green-300 rounded-sm pl-2">Asistencia</h1>
+            <div className="w-full  rounded-md">
                 <div className="report-detail-line">
                     <label>Miembros Activos</label>
                     <label>{data.activeMember}</label>

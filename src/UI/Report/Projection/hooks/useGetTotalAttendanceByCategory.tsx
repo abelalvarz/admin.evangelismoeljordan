@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { PieChart } from "../../../App/styled-components/PieChart";
 import { ReportService } from "../../../../Core/Adapters/ReportService";
 import { TotalCategoryAttendance } from "../../../../Core/Reports/application/dtos/TotalCategoryAttendance";
-import { PiEmptyBold } from "react-icons/pi";
 
-interface Prosp {
+interface Props {
     initialDate: any;
     finalDate: any;
 }
@@ -19,10 +17,9 @@ const initialState: Category = {
     data: []
 }
 
-export const CategoryAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
-
+export const useGetTotalAttendanceByCategory = ({ initialDate, finalDate }: Props) => {
     const reportService = ReportService;
-    const [categoryValues, setCategoryValues] = useState<Category>(initialState)
+    const [totalCategories, setTotalAttendance] = useState<Category>(initialState)
 
     useEffect(() => {
         if (initialDate && finalDate) {
@@ -41,12 +38,9 @@ export const CategoryAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
             newValues.push(parseInt(item.totalAttendance));
         });
 
-        setCategoryValues({ ...categoryValues, labels: newLabels, data: newValues })
+        setTotalAttendance({ ...totalCategories, labels: newLabels, data: newValues })
     };
-    if ( categoryValues === null)
-        return <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100} /> </h1>
-
-    return (
-        <PieChart params={categoryValues} />
-    )
+    return {
+        totalCategories
+    }
 }

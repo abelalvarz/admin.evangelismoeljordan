@@ -6,11 +6,14 @@ import { Navigate } from "react-router-dom"
 import { ReportViewPage } from "../../Report/View/ReportViewPage"
 import { TbReportAnalytics } from "react-icons/tb"
 import { ReportDetailView } from "../../Report/DetailView/ReportDetailView"
+import { FcVideoProjector } from "react-icons/fc"
+import { ReportProjectionPage } from "../../Report/Projection/ReportProjectionPage"
 
 export const AppRoutes = [
     { name: 'Dashboard', icon: <RiDashboardFill size={25} />, path: "/dashboard", element: <DashboardPage />, isPrivate: true },
     { name: 'Nuevo', icon: <HiPlus size={25} />, path: "/nuevo-reporte", element: <ReportCreationPage />, isPrivate: true },
     { name: 'Reportes', icon: <TbReportAnalytics size={25} />, path: "/reportes", element: <ReportViewPage />, isPrivate: true },
+    { name: 'Proyectar Reportes', icon: <FcVideoProjector size={25} />, path: "/proyectar", element: <ReportProjectionPage />, isPrivate: true },
     { path: "/detalle-reporte/:id", element: <ReportDetailView />, isPrivate: true },
     { path: "*", element: <Navigate to="/dashboard" replace={true} />, isPrivate: true },
 ]

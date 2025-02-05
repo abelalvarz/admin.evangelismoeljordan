@@ -5,7 +5,6 @@ import { ReportCreation } from './ReportFormComponent/ReportCreation'
 import { Report } from '../../../../Core/Reports/domain/model/Report'
 import { ReportService } from '../../../../Core/Adapters/ReportService'
 import { useToast } from '../../../App/context/ToastContext'
-import { HeadContainer } from '../../../App/styled-components/HeadContainer'
 
 const initialState: Report = {
     id:null,
@@ -84,9 +83,9 @@ export const CreateReport = () => {
         <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md'>
             <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-100 p-10 max-sm:bg-transparent rounded-md top-0 `}>
 
-                <HeadContainer>
-                    <h1 className='font-bold text-4xl'>Nuevo Reporte</h1>
-                </HeadContainer>
+                <div className='title-container'>
+                    <h1 className='title-content'>Nuevo Reporte</h1>
+                </div>
 
                 <ReportCreation
                     data={report}

@@ -15,8 +15,8 @@ export const DashboardPage = () => {
     return (
         <div className='page-container'>
             <div className='relative h-full flex flex-col justify-evenly '>
-                <div className="flex justify-between items-end h-[5vh]">
-                    <h1 className="text-4xl font-bold">Dashboard</h1>
+                <div className="title-container">
+                    <h1 className="title-content">Dashboard</h1>
                 </div>
                 <FilterDataComponent handleRangeOnChange={handleRangeOnChange} />
                 <ResumeCardComponent initialDate={rangeOfDate.initial} finalDate={rangeOfDate.final} />
