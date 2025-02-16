@@ -5,10 +5,12 @@ import { FilterDataComponent } from '../App/component/FilterDataComponent'
 
 export const DashboardPage = () => {
 
-    const [rangeOfDate, setRangeOfDate] = useState<any>({
+    const initialDateRange = {
         initial: null,
         final: null
-    })
+    }
+    
+    const [rangeOfDate, setRangeOfDate] = useState<any>(initialDateRange)
 
     const handleRangeOnChange = (value: any) => setRangeOfDate((prev: any) => ({ ...prev, ...value }))
 

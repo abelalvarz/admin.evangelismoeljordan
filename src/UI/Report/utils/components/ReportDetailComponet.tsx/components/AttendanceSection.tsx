@@ -10,19 +10,19 @@ export const AttendanceSection = ({ data }: Prosp) => {
             <div className="w-full  rounded-md">
                 <div className="report-detail-line">
                     <label>Miembros Activos</label>
-                    <label>{data.activeMember}</label>
+                    <label>{data.activeMembers}</label>
                 </div>
                 <div className="report-detail-line">
                     <label>Hijos de Miembros Activos</label>
-                    <label>{data.activeMemberChildren}</label>
+                    <label>{data.activeMembersChildren}</label>
                 </div>
                 <div className="report-detail-line">
                     <label>Miembros No Activos</label>
-                    <label>{data.noActiveMember}</label>
+                    <label>{data.noActiveMembers}</label>
                 </div>
                 <div className="report-detail-line">
                     <label>Hijos de Miembros no Activos</label>
-                    <label>{data.noActiveMemberChildren}</label>
+                    <label>{data.noActiveMembersChildren}</label>
                 </div>
                 <div className="report-detail-line">
                     <label>Niños Visitantes</label>

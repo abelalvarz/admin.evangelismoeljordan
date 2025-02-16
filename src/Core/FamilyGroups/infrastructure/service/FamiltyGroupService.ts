@@ -1,6 +1,6 @@
-import { CreateGroupUseCase } from "../FamilyGroups/application/createGroupUseCase";
-import { GetAllGroupsUseCase } from "../FamilyGroups/application/getAllGroupsUseCase";
-import { FirebaseFamilyGroupRepository } from "../FamilyGroups/infrastructure/FirebaseFamilyGroupRepository";
+import { CreateGroupUseCase } from "../../application/createGroupUseCase";
+import { GetAllGroupsUseCase } from "../../application/getAllGroupsUseCase";
+import { FirebaseFamilyGroupRepository } from "../database/FirebaseFamilyGroupRepository";
 // import { InMemoryFamiltyGroupRepository } from "../infrastructure/persistance/InMemoryFamilyGroupRepository"
 
 // const repository = new InMemoryFamiltyGroupRepository();

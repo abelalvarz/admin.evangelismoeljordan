@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { ReportService } from "../../../../Core/Adapters/ReportService";
 import { Report } from "../../../../Core/Reports/domain/model/Report";
+import { ReportService } from "../../../../Core/Reports/infrastructure/service/ReportService";
 
 export const useGetAllReports = () => {
 
@@ -22,7 +22,7 @@ export const useGetAllReports = () => {
     const getAllReports = async () => {
         setLoading(true)
 
-        const response = await reportService.getAllBetweenPeriodTime.execute(rangeOfDate.initial, rangeOfDate.final)
+        const response = await reportService.getAllBetweenDates.execute(rangeOfDate.initial, rangeOfDate.final)
         setReports(response || [])
 
         setLoading(false)

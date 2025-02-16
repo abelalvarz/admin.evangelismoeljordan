@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { BarChart } from '../../../App/styled-components/BarChart'
-import { ReportService } from '../../../../Core/Adapters/ReportService';
 import { PiEmptyBold } from 'react-icons/pi';
+import { ReportService } from '../../../../Core/Reports/infrastructure/service/ReportService';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 interface Prosp {
     initialDate: any;
@@ -24,6 +25,7 @@ export const TotalAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
 
     const reportService = ReportService;
     const [data, setData] = useState<TotalAttendance>(initialState)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (initialDate && finalDate) {
@@ -32,10 +34,17 @@ export const TotalAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
     }, [initialDate, finalDate])
 
     const getWeekAttendance = async () => {
+        setLoading(true)
         const response = await reportService.getTotalWeekAttendance.execute(initialDate, finalDate);
+        setLoading(false)
 
         if (!response) return;
 
+        const { newLabels, newValues, newColors } = extractData(response);
+        setData({ ...data, labels: newLabels, values: newValues, colors: newColors });
+    };
+
+    const extractData = (response: any) => {
         const newLabels: string[] = [];
         const newValues: number[] = [];
         const newColors: string[] = [];
@@ -46,11 +55,13 @@ export const TotalAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
             newValues.push(parseInt(item.totalAttendance));
             newColors.push(item.familyGroup?.color || "")
         });
+        return { newLabels, newValues, newColors }
+    }
 
-        setData({ ...data, labels: newLabels, values: newValues, colors: newColors });
-    };
+    if (loading)
+        return <ProgressSpinner />
 
-    if (data.values.length === 0)
+    if (data.values.length === 0 && !loading)
         return <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100} /> </h1>
 
     return (

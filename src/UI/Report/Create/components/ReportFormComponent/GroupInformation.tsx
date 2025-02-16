@@ -1,8 +1,8 @@
 
+import React, { useEffect, useState } from 'react'
 import { Calendar } from 'primereact/calendar'
 import { Dropdown } from 'primereact/dropdown'
-import React, { useEffect, useState } from 'react'
-import { FamilyGroupService } from '../../../../../Core/Adapters/FamiltyGroupService'
+import { FamilyGroupService } from '../../../../../Core/FamilyGroups/infrastructure/service/FamiltyGroupService'
 import { FamilyGroup } from '../../../../../Core/FamilyGroups/domain/model/FamilyGroup'
 
 interface Props {
@@ -41,9 +41,7 @@ export const GroupInformation = ({ onChangeData, data }: Props) => {
                 <label>Grupo Familiar: </label>
                 <Dropdown
                     value={data.familyGroup}
-                    onChange={(e: any) => {
-                        onChangeData({ 'familyGroup': e.value })
-                    }}
+                    onChange={(e: any) => onChangeData({ 'familyGroup': e.value })}
                     options={familyGroups}
                     optionLabel="name"
                     placeholder="Seleccionar Grupo"

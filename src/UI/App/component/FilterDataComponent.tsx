@@ -6,14 +6,15 @@ interface Props {
     handleRangeOnChange: (value: any) => void;
 }
 
-
 export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
 
-    const [selectedFilter, setSelectedFilter] = useState<string>('currentWeek')
-    const [selectedDate, setSelectedDate] = useState({
+    const initialSelectDate = {
         initial: null,
         final: null
-    })
+    }
+    
+    const [selectedFilter, setSelectedFilter] = useState<string>('currentWeek')
+    const [selectedDate, setSelectedDate] = useState(initialSelectDate)
 
     useEffect(() => {
         handleWeekSelection(12)
@@ -26,6 +27,7 @@ export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
         }))
         handleRangeOnChange(newValues)
     }
+
     const handleWeekSelection = (periodTime: number) => {
         const date = getPeriodTime(periodTime)
         handleRangeOnChange(date)
@@ -37,6 +39,7 @@ export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
     }
 
     const filterButtonStyle = (value: any) => `pr-2 py-2 border-b-2 hover:text-gray-950 ${selectedFilter === value ? 'border-b-blue-400 duration-700 font-bold' : ' text-gray-600'}`;
+
     return (
         <div className="flex justify-between items-center h-20">
             <div>

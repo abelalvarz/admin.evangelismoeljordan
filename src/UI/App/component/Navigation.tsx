@@ -2,15 +2,22 @@
 import React, { useState } from 'react'
 import { BiMenu } from "react-icons/bi";
 import { CgClose } from 'react-icons/cg';
-import { AppRoutes } from '../config/AppRoutes';
+import { PrivateRoutes } from '../config/AppRoutes';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { FaPowerOff } from 'react-icons/fa';
 
 export const Navigation = () => {
 
+	const auth = useAuth()
 	const [visible, setVisible] = useState(false)
 	const location = useLocation()
 
 	console.log(location.pathname)
+
+	if (!auth?.loggedUser.logged) {
+		return <></>;
+	}
 
 	return (
 		<React.Fragment>
@@ -24,7 +31,7 @@ export const Navigation = () => {
 				</button>
 			</div>
 			<div
-				className={`fixed bg-blue-950 lg:w-[12%] h-full md:w-[10%] md:ml-0 sm:w-full sm:z-10 ${visible ? 'max-sm:ml-[0] sm:ml-[0]' : 'max-sm:ml-[-100%] sm:ml-[-100%]'} max-sm:w-full max-sm:z-10 duration-500`}      >
+				className={`fixed bg-blue-950 min-w-[10vw] lg:w-[12%] h-full md:w-[10%] md:ml-0 sm:w-full sm:z-10 ${visible ? 'max-sm:ml-[0] sm:ml-[0]' : 'max-sm:ml-[-100%] sm:ml-[-100%]'} max-sm:w-full max-sm:z-10 duration-500`}      >
 				<ul>
 					<button
 						className='absolute top-5 right-10 '
@@ -39,7 +46,7 @@ export const Navigation = () => {
 						<h1 className='text-3xl font-bold text-white'>Evangelismo</h1>
 					</div>
 					{
-						AppRoutes.map((route, i) => {
+						PrivateRoutes.map((route, i) => {
 							if (!route.icon) return;
 							return (
 								<Link
@@ -52,6 +59,15 @@ export const Navigation = () => {
 							)
 						})
 					}
+					<div className='absolute w-full flex justify-center  items-center bottom-0 px-5 py-5 '>
+						<button className='text-white flex flex-col justify-center  items-center' onClick={() => {
+							console.log("logout");
+							auth.logout()
+						}}>
+							<FaPowerOff className='text-center' size={20} />
+							Logout
+						</button>
+					</div>
 				</ul>
 			</div>
 		</React.Fragment>

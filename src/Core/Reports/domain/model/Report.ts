@@ -1,33 +1,24 @@
+import { FamilyGroup } from "../../../FamilyGroups/domain/model/FamilyGroup";
 
 export class Report {
     constructor(
-        readonly id: string | null | undefined,
-        readonly familyGroup: {
-            name: string,
-            color: string
-        } | null,
-        readonly activeMember: string,
-        readonly activeMemberChildren: string,
-        readonly noActiveMember: string,
-        readonly noActiveMemberChildren: string,
-        readonly visitorChildren: string,
-        readonly visitors: string,
-        readonly totalAttendance: string,
-        readonly visitedHomes: string,
-        readonly newChristians: string,
-        readonly reconciled: string,
-        readonly vigilAttendance: string,
-        readonly offering: string,
+        readonly id: string | null ,
+        readonly familyGroup: FamilyGroup| null,
+        readonly activeMembers: number | null,
+        readonly activeMembersChildren: number | null,
+        readonly noActiveMembers: number | null,
+        readonly noActiveMembersChildren: number | null,
+        readonly visitorChildren: number | null,
+        readonly visitors: number | null,
+        readonly totalAttendance: number | null,
+        readonly visitedHomes: number | null,
+        readonly newChristians: number | null,
+        readonly reconciled: number | null,
+        readonly vigilAttendance: number | null,
+        readonly offering: number | null,
         readonly notes: string,
         readonly meetingDate: Date,
         readonly creationDate: Date,
         readonly createdBy: string
     ) { }
 }
-
-// export class FamilyGroup {
-//     constructor(
-//         readonly name: string,
-//         readonly color: string
-//     ) { }
-// }

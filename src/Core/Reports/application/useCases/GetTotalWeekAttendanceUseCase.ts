@@ -6,33 +6,32 @@ export class GetTotalWeekAttendanceUseCase {
     constructor(private readonly repository: ReportRepository) { }
 
     async execute(initialDate: Date, finalDate: Date): Promise<TotalAttendance[]> {
-        const reports = await this.repository.getByPeriod(initialDate, finalDate)
 
-        const agruppedByName = reports.reduce((acc: any, report: Report) => {
+        const reports = await this.repository.getAllBetweenDates(initialDate, finalDate);
+        const reportsByName = reports.reduce((acc: any, report: Report) => {
+            const groupName = report.familyGroup?.name;
 
-            console.log("report",report)
-            const groupName = report.familyGroup?.name
-            if (groupName === undefined) {
+            if (groupName === undefined || groupName === null) {
                 return;
             }
-            
+
             if (!acc[groupName]) {
                 acc[groupName] = {
                     familyGroup: {
                         name: report.familyGroup?.name,
                         color: report.familyGroup?.color
                     },
-                    totalAttendance: parseInt(report.totalAttendance) | 0
+                    totalAttendance: report.totalAttendance || 0
                 };
-
-                console.log("acc",acc)
+                return acc;
             }
-            acc[groupName].totalAttendance += parseInt(report.totalAttendance) | 0;
-            console.log(acc)
+
+            acc[groupName].totalAttendance += report.totalAttendance || 0;
             return acc;
         }, {});
 
-        const totalList = Object.entries(agruppedByName).map(([, value]: [string, any]) => new TotalAttendance(value.familyGroup, value.totalAttendance));
+
+        const totalList = Object.entries(reportsByName).map(([, value]: [string, any]) => new TotalAttendance(value.familyGroup, value.totalAttendance));
         return Promise.resolve(totalList)
     }
 }

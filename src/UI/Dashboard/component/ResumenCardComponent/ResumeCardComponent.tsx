@@ -2,8 +2,8 @@ import { BsHouse, BsPeople } from 'react-icons/bs'
 import { TbFriends } from 'react-icons/tb'
 import { GoPeople } from 'react-icons/go'
 import { useEffect, useState } from 'react'
-import { ReportService } from '../../../../Core/Adapters/ReportService'
 import { SummaryReport } from '../../../../Core/Reports/application/dtos/SummaryReport'
+import { ReportService } from '../../../../Core/Reports/infrastructure/service/ReportService'
 
 interface Props {
     initialDate: Date,

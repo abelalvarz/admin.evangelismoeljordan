@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ReportService } from '../../../../Core/Adapters/ReportService';
+import { ReportService } from '../../../../Core/Reports/infrastructure/service/ReportService';
 
 interface Prosp {
     initialDate: any;

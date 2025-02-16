@@ -2,7 +2,8 @@ import { Report } from "../model/Report";
 
 export interface ReportRepository {
     create(report: Report): Promise<void>
-    getByPeriod(initialDate: Date, finalDate: Date): Promise<Report[]>
-    getAll(): Promise<Report[]>
+    update(report: Report): Promise<void>
+    delete(id: string): Promise<void>
+    getAllBetweenDates(startDate: Date, endDate: Date): Promise<Report[]>
     getOneById(id: string): Promise<Report>
 }

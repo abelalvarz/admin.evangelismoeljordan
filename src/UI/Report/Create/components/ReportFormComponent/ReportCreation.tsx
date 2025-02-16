@@ -12,10 +12,11 @@ import { Report } from '../../../../../Core/Reports/domain/model/Report';
 interface Props {
     data: Report,
     onChangeData: (newValues: Object) => void,
-    handleShowDialog: VoidFunction
+    handleShowDialog: VoidFunction;
+    disabled: boolean
 }
 
-export const ReportCreation = ({ data, onChangeData, handleShowDialog }: Props) => {
+export const ReportCreation = ({ data, onChangeData, handleShowDialog, disabled }: Props) => {
 
     const stepperRef = useRef<any>(null);
     const [activeStep, setActiveStep] = useState(0)
@@ -30,19 +31,23 @@ export const ReportCreation = ({ data, onChangeData, handleShowDialog }: Props) 
         stepperRef?.current?.prevCallback()
     }
 
+    const handleStepOnchange = (e: any) => {
+        setActiveStep(e.index)
+    }
+
     return (
         <div className='mt-10'>
             <div className='p-0 flex flex-col justify-between'>
                 <GroupInformation onChangeData={onChangeData} data={data} />
-                <Stepper ref={stepperRef} >
+                <Stepper ref={stepperRef} onChangeStep={handleStepOnchange}>
                     <StepperPanel header="Asistencia" >
-                        <AssistanceStepperPanel onChangeData={onChangeData} data={data} />
+                        <AssistanceStepperPanel onChangeData={onChangeData} data={data} disabled={disabled} />
                     </StepperPanel>
                     <StepperPanel header="Evangelizacion">
-                        <ActivitiesStepperPanel onChangeData={onChangeData} data={data} />
+                        <ActivitiesStepperPanel onChangeData={onChangeData} data={data} disabled={disabled} />
                     </StepperPanel>
-                    <StepperPanel header="Ofrenda">
-                        <OfferingStepperPanel onChangeData={onChangeData} data={data} />
+                    <StepperPanel header="Ofrenda" >
+                        <OfferingStepperPanel onChangeData={onChangeData} data={data} disabled={disabled} />
                     </StepperPanel>
                 </Stepper>
             </div>
@@ -55,12 +60,11 @@ export const ReportCreation = ({ data, onChangeData, handleShowDialog }: Props) 
 
                 <Button
                     className='w-[15%] max-sm:w-full  bg-green-400 p-4'
-                    label={activeStep == 2 ? 'Enviar' : 'Siguiente'}
+                    label={activeStep === 2 ? 'Enviar' : 'Siguiente'}
                     iconPos="right"
-                    icon={`${activeStep == 2 ? 'pi pi-check' : 'pi pi-arrow-right'}`}
+                    icon={`${activeStep === 2 ? 'pi pi-check' : 'pi pi-arrow-right'}`}
                     onClick={() => activeStep == 2 ? handleShowDialog() : handleNextStep()} />
             </div>
-
         </div>
     )
 }

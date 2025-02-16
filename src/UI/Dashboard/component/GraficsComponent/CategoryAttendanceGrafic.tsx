@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { PieChart } from "../../../App/styled-components/PieChart";
-import { ReportService } from "../../../../Core/Adapters/ReportService";
 import { TotalCategoryAttendance } from "../../../../Core/Reports/application/dtos/TotalCategoryAttendance";
 import { PiEmptyBold } from "react-icons/pi";
+import { ReportService } from "../../../../Core/Reports/infrastructure/service/ReportService";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 interface Prosp {
     initialDate: any;
@@ -22,7 +23,8 @@ const initialState: Category = {
 export const CategoryAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
 
     const reportService = ReportService;
-    const [categoryValues, setCategoryValues] = useState<Category>(initialState)
+    const [categoryValues, setCategoryValues] = useState<Category>(initialState);
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (initialDate && finalDate) {
@@ -31,7 +33,11 @@ export const CategoryAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
     }, [initialDate, finalDate]);
 
     const getCategoryAttendance = async () => {
+        setLoading(true)
         const response = await reportService.getTotalCategoryAttendance.execute(initialDate, finalDate);
+
+        console.log(response)
+        setLoading(false)
 
         const newLabels: string[] = [];
         const newValues: number[] = [];
@@ -43,9 +49,12 @@ export const CategoryAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
 
         setCategoryValues({ ...categoryValues, labels: newLabels, data: newValues })
     };
-    if ( categoryValues === null)
-        return <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100} /> </h1>
 
+    if (loading)
+        return <ProgressSpinner />
+
+    if (categoryValues.data.length === 0 && !loading)
+        return <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100} /> </h1>
     return (
         <PieChart params={categoryValues} />
     )

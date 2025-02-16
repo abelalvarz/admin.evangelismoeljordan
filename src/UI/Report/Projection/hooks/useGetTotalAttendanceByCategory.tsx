@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { ReportService } from "../../../../Core/Adapters/ReportService";
 import { TotalCategoryAttendance } from "../../../../Core/Reports/application/dtos/TotalCategoryAttendance";
+import { ReportService } from "../../../../Core/Reports/infrastructure/service/ReportService";
 
 interface Props {
     initialDate: any;

@@ -1,9 +1,9 @@
 import { Report } from "../../domain/model/Report";
 import { ReportRepository } from "../../domain/repository/ReportRepository";
 
-export class GetAllUseCase{
+export class UpdateUseCase {
     constructor(private readonly repository: ReportRepository){}
-    async execute():Promise<Report[]>{
-        return await this.repository.getAll();
+    execute(report:Report):Promise<void>{
+        return this.repository.update(report)
     }
 }
