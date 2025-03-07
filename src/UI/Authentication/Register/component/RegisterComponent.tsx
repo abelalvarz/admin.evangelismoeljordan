@@ -19,7 +19,7 @@ interface Props {
 
 export const RegisterComponent = ({user, handleOnChange, handleSubmit}:Props) => {
     return (
-        <div className="w-full h-[100vh] flex justify-center items-center bg-[url(../../../../public/background.jpg)] bg-cover bg-center ">
+        <div className="w-full h-[100vh] flex justify-center items-center bg-[url(/background.jpg)] bg-cover bg-center ">
             <div className="w-full h-full flex flex-col justify-center items-center bg-[rgba(0,0,0,0.5)]">
                 <div className="w-[30%] h-[70%] flex flex-col justify-center items-center backdrop-blur-md rounded-md">
                     <div className="title-container min-h-[20%] ">
