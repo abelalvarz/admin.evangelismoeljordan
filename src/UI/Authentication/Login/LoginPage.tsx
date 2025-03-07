@@ -36,12 +36,17 @@ export const LoginPage = () => {
 
 		loading?.stop()
 
-		if (!response)
+		if (!response.success || !response.data)
 			return toast?.show('error', 'Error', 'Email o Contraseña incorrecto')
 
 		toast?.show('success', 'Exito', 'Login realizado con exito')
 		setTimeout(() => {
-			auth?.login({ name: response.name, email: response.email, role: response.role, token: response.token })
+			auth?.login({
+				name: response.data?.name,
+				email: response.data?.email,
+				role: response.data?.role,
+				token: response.data?.token
+			})
 		}, 500)
 	}
 

@@ -5,6 +5,28 @@ import { Report } from '../../../Core/Reports/domain/model/Report';
 import { useToast } from '../../App/context/ToastContext';
 import { ReportService } from '../../../Core/Reports/infrastructure/service/ReportService';
 
+const initialReportState = {
+    id: "",
+    familyGroup: null,
+    activeMembers: null,
+    activeMembersChildren: null,
+    noActiveMembers: null,
+    noActiveMembersChildren: null,
+    visitorChildren: null,
+    visitors: null,
+    totalAttendance: null,
+    visitedHomes: null,
+    newChristians: null,
+    reconciled: null,
+    vigilAttendance: null,
+    offering: null,
+    comments: "",
+    meetingDate: new Date(),
+    creationDate: new Date(),
+    createdBy: ""
+
+}
+
 export const UpdateReport = () => {
 
     const toast = useToast()
@@ -14,27 +36,7 @@ export const UpdateReport = () => {
     const [disable, setDisable] = useState(false)
 
     const [showConfirmation, setShowConfirmation] = useState(false)
-    const [reportDetail, setReportDetail] = useState<Report>({
-        id: "",
-        familyGroup: null,
-        activeMembers: null,
-        activeMembersChildren: null,
-        noActiveMembers: null,
-        noActiveMembersChildren: null,
-        visitorChildren: null,
-        visitors: null,
-        totalAttendance: null,
-        visitedHomes: null,
-        newChristians: null,
-        reconciled: null,
-        vigilAttendance: null,
-        offering: null,
-        notes: "",
-        meetingDate: new Date(),
-        creationDate: new Date(),
-        createdBy: ""
-
-    })
+    const [reportDetail, setReportDetail] = useState<Report>(initialReportState)
 
     useEffect(() => {
         if (id) {
@@ -47,7 +49,7 @@ export const UpdateReport = () => {
         if (!response) {
             return;
         }
-        setReportDetail(response)
+        setReportDetail(response.data)
     }
 
     const handleOnchange = (newValues: any) => setReportDetail((prev) => ({ ...prev, ...newValues }))

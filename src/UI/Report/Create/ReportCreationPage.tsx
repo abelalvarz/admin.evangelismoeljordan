@@ -21,7 +21,7 @@ const initialState: Report = {
     reconciled: null,
     vigilAttendance: null,
     offering: null,
-    notes: "",
+    comments: "",
     meetingDate: new Date(),
     creationDate: new Date(),
     createdBy: "test",
@@ -71,7 +71,7 @@ export const ReportCreationPage = () => {
         const reporToSubmit = { ...report, totalAttendance: totalAsistencia }
 
         const response = await service.create.execute(reporToSubmit)
-        if (response === null) {
+        if (response === null || !response.success) {
             toast?.show('error', "Error.", "El reporte no se pudo crear.");
             return;
         }
@@ -83,7 +83,7 @@ export const ReportCreationPage = () => {
 
     return (
         <div className="page-container">
-            <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md'>
+            <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md '>
                 <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-100 p-10 max-sm:bg-transparent rounded-md top-0 `}>
                     <div className='title-container'>
                         <h1 className='title-content'>Nuevo Reporte</h1>

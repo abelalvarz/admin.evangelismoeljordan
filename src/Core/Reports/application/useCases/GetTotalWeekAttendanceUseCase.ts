@@ -1,11 +1,13 @@
+import { Response } from "../../../Config/Response";
 import { Report } from "../../domain/model/Report";
 import { ReportRepository } from "../../domain/repository/ReportRepository";
 import { TotalAttendance } from "../dtos/TotalAttendance";
 
 export class GetTotalWeekAttendanceUseCase {
+
     constructor(private readonly repository: ReportRepository) { }
 
-    async execute(initialDate: Date, finalDate: Date): Promise<TotalAttendance[]> {
+    async execute(initialDate: Date, finalDate: Date): Promise<Response<TotalAttendance[]>> {
 
         const reports = await this.repository.getAllBetweenDates(initialDate, finalDate);
         const reportsByName = reports.reduce((acc: any, report: Report) => {
@@ -32,6 +34,6 @@ export class GetTotalWeekAttendanceUseCase {
 
 
         const totalList = Object.entries(reportsByName).map(([, value]: [string, any]) => new TotalAttendance(value.familyGroup, value.totalAttendance));
-        return Promise.resolve(totalList)
+        return new Response(true, "Datos obtenidos exitosamente",totalList)
     }
 }

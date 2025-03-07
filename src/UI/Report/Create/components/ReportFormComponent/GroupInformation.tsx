@@ -21,7 +21,7 @@ export const GroupInformation = ({ onChangeData, data }: Props) => {
 
     const getFamiltyGroups = async () => {
         const response = await familyGroupService.getAll.execute()
-        setFamilyGroups(response)
+        setFamilyGroups(response.data)
     }
 
     return (

@@ -1,9 +1,8 @@
 import { FamilyGroup } from "../../../FamilyGroups/domain/model/FamilyGroup";
 
-export class Report {
+export class CreateReportRequest {
     constructor(
-        readonly id: string | null | undefined ,
-        readonly familyGroup: FamilyGroup| null,
+        readonly familyGroup: FamilyGroup | null,
         readonly activeMembers: number | null,
         readonly activeMembersChildren: number | null,
         readonly noActiveMembers: number | null,

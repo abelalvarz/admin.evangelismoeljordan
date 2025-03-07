@@ -18,8 +18,8 @@ export const OfferingStepperPanel = ({ onChangeData, data, disabled }: Props) =>
             <div className='w-full flex flex-col'>
                 <label>Comentarios u Observaciones: </label>
                 <InputTextarea
-                    value={data.notes}
-                    onChange={(e: any) => onChangeData({ 'notes': e.target.value })}
+                    value={data.comments}
+                    onChange={(e: any) => onChangeData({ 'comments': e.target.value })}
                     className='border-gray-300 border-x-2 border-y-2 outline-none'
                     disabled={disabled}
                     autoResize rows={5} cols={30} />

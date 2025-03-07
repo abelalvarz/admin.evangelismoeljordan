@@ -23,7 +23,7 @@ export const useGetAllReports = () => {
         setLoading(true)
 
         const response = await reportService.getAllBetweenDates.execute(rangeOfDate.initial, rangeOfDate.final)
-        setReports(response || [])
+        setReports(response.data || [])
 
         setLoading(false)
     }

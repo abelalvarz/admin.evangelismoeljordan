@@ -1,3 +1,4 @@
+import { Response } from "../../../Config/Response";
 import { Report } from "../../domain/model/Report"
 import { ReportRepository } from "../../domain/repository/ReportRepository";
 import { TotalCategoryAttendance } from "../dtos/TotalCategoryAttendance"
@@ -6,19 +7,10 @@ export class GetTotalAttendanceByCategory {
 
     constructor(private readonly repository: ReportRepository) { }
 
-    async execute(initialDate: Date, finalDate: Date): Promise<TotalCategoryAttendance[]> {
+    async execute(initialDate: Date, finalDate: Date): Promise<Response<TotalCategoryAttendance[]>> {
         const reports = await this.repository.getAllBetweenDates(initialDate, finalDate)
-        // const totalActiveMembers = reports.reduce((accumulator, report: Report) => accumulator + (parseInt(report.activeMember) | 0), 0)
-        // const totalNoActiveMembers = reports.reduce((accumulator, report: Report) => accumulator + (parseInt(report.noActiveMember) | 0), 0)
-        // const totalVisitor = reports.reduce((accumulator, report: Report) => accumulator + (parseInt(report.visitors) | 0), 0)
 
-        // const returnDate: TotalCategoryAttendance[] = []
-        // returnDate.push(new TotalCategoryAttendance("Miembros Activos", (totalActiveMembers.toString() || "0")))
-        // returnDate.push(new TotalCategoryAttendance("Miembros no Activos", (totalNoActiveMembers.toString() || "0")))
-        // returnDate.push(new TotalCategoryAttendance("Amigos Visitantes", (totalVisitor.toString() || "0")))
-        
-        console.log(reports)
-        const reportsByName = reports.reduce((acc: any, report: Report) => {
+        const totalByCategories = reports.reduce((acc: any, report: Report) => {
             const categories = getCategories(report);
 
             categories.forEach(category => {
@@ -33,30 +25,28 @@ export class GetTotalAttendanceByCategory {
 
             return acc
         }, {});
-        console.log(reportsByName)
-        const totalList = Object.entries(reportsByName).map(([key, value]: [string, any]) => {
-            console.log(key)
+
+        const totalList = Object.entries(totalByCategories).map(([key, value]: [string, any]) => {
             return new TotalCategoryAttendance(key, value.totalAttendance)
         });
-        return Promise.resolve(totalList)
+        return new Response(true, "Datos obtenidos exitosamente", totalList)
     }
 }
 
 const getCategories = (report: Report): string[] => {
     const categories: string[] = [];
-    const { activeMembers, activeMembersChildren, noActiveMembers, noActiveMembersChildren, visitorChildren, visitors } = report;
 
-    if (activeMembers) categories.push('Miembros Activos');
-    if (activeMembersChildren) categories.push('Hijos de miembros Activos');
-    if (noActiveMembers) categories.push('Miembros no Activos');
-    if (noActiveMembersChildren) categories.push('Hijos de miembros no activos');
-    if (visitorChildren) categories.push('Niños visitantes');
-    if (visitors) categories.push('Visitantes');
+    if (report.activeMembers) categories.push('Miembros Activos');
+    if (report.activeMembersChildren) categories.push('Hijos de miembros Activos');
+    if (report.noActiveMembers) categories.push('Miembros no Activos');
+    if (report.noActiveMembersChildren) categories.push('Hijos de miembros no activos');
+    if (report.visitorChildren) categories.push('Niños visitantes');
+    if (report.visitors) categories.push('Visitantes');
 
     return categories;
 }
 
-function getCategoryAttendance(report: Report, category: string): number {
+const getCategoryAttendance = (report: Report, category: string): number => {
     switch (category) {
         case 'Miembros Activos':
             return report.activeMembers || 0;
@@ -65,7 +55,7 @@ function getCategoryAttendance(report: Report, category: string): number {
         case 'Miembros no Activos':
             return report.noActiveMembers || 0;
         case 'Hijos de miembros no activos':
-            return report.noActiveMembersChildren|| 0;
+            return report.noActiveMembersChildren || 0;
         case 'Niños visitantes':
             return report.visitorChildren || 0;
         case 'Visitantes':

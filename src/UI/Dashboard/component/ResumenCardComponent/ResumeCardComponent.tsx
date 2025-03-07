@@ -11,10 +11,10 @@ interface Props {
 }
 
 const initialState: SummaryReport = {
-    totalAttendance: "",
-    totalHomeVisited: "",
-    totalVisitors: "",
-    totalNewChristians: ""
+    totalAttendance: 0,
+    totalHomeVisited: 0,
+    totalVisitors: 0,
+    totalNewChristians: 0
 }
 
 export const ResumeCardComponent = ({ initialDate, finalDate }: Props) => {
@@ -30,7 +30,7 @@ export const ResumeCardComponent = ({ initialDate, finalDate }: Props) => {
 
     const getSummaryReport = async () => {
         const response = await reportService.getSummaryReport.execute(initialDate, finalDate);
-        setSummary(response)
+        setSummary(response.data)
     };
 
     return (

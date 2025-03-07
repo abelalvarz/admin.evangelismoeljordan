@@ -3,8 +3,10 @@ import { useToast } from "../../App/context/ToastContext";
 import { UserService } from "../../../Core/Users/infrastructure/service/UserService";
 import { RegisterComponent } from "./component/RegisterComponent";
 import { useLoading } from "../../App/context/LoadingContext";
+import { CreateUserRequest } from "../../../Core/Users/application/dtos/request/CreateUserRequest";
+import { useNavigate } from "react-router-dom";
 
-const initialState = {
+const initialState: CreateUserRequest = {
 	name: '',
 	email: '',
 	role: '',
@@ -15,7 +17,8 @@ export const RegisterPage = () => {
 
 	const service = UserService
 	const toast = useToast();
-	const loading = useLoading()
+	const loading = useLoading();
+	const navigate = useNavigate();
 	const [user, setUser] = useState(initialState)
 
 	const handleOnChange = (e: any) => {
@@ -27,17 +30,18 @@ export const RegisterPage = () => {
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
-		
+
 		loading?.start()
 
 		validateAllFields()
 		const response = await service.register.execute(user);
 
 		loading?.stop()
-		if (!response) {
-			return
+		if (!response.success) {
+			return toast?.show('error', 'Error', response.message)
 		}
-		toast?.show('success', 'Exito', 'Usuario creado exitosamente!')
+		toast?.show('success', 'Exito', response.message);
+		navigate('/login')
 	}
 
 	const validateAllFields = () => {

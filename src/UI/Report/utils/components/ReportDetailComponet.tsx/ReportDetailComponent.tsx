@@ -31,7 +31,7 @@ export const ReportDetailComponent = ({ data }: Props) => {
         reconciled: null,
         vigilAttendance: null,
         offering: null,
-        notes: "",
+        comments: "",
         meetingDate: new Date(),
         creationDate: new Date(),
         createdBy: ""

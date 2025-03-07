@@ -36,13 +36,12 @@ export const CategoryAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
         setLoading(true)
         const response = await reportService.getTotalCategoryAttendance.execute(initialDate, finalDate);
 
-        console.log(response)
         setLoading(false)
 
         const newLabels: string[] = [];
         const newValues: number[] = [];
 
-        response.forEach((item: TotalCategoryAttendance) => {
+        response.data.forEach((item: TotalCategoryAttendance) => {
             newLabels.push(item.category);
             newValues.push(parseInt(item.totalAttendance));
         });

@@ -15,7 +15,7 @@ export const OfferingSection = ({ data }: Props) => {
                 </div>
                 <div className="w-full flex flex-col justify-between  py-2 px-2">
                     <label>Comentarios</label>
-                    <small>{data.notes}</small>
+                    <small>{data.comments}</small>
                 </div>
             </div>
         </div>

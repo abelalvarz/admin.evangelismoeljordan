@@ -33,7 +33,7 @@ export const useGetTotalAttendanceByCategory = ({ initialDate, finalDate }: Prop
         const newLabels: string[] = [];
         const newValues: number[] = [];
 
-        response.forEach((item: TotalCategoryAttendance) => {
+        response.data.forEach((item: TotalCategoryAttendance) => {
             newLabels.push(item.category);
             newValues.push(parseInt(item.totalAttendance));
         });

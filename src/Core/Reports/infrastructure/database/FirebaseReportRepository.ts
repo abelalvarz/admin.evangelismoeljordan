@@ -8,6 +8,9 @@ const database = firebaseApp;
 const collectionName: string = "Reports";
 
 export class FirebaseReportRepository implements ReportRepository {
+
+    private collection = collection(database, collectionName)
+
     async getAllBetweenDates(startDate: Date, endDate: Date): Promise<Report[]> {
         const customeQuery = query(this.collection, where("meetingDate", ">=", startDate), where("meetingDate", "<=", endDate))
         const reports = await getDocs(customeQuery);
@@ -30,7 +33,7 @@ export class FirebaseReportRepository implements ReportRepository {
                 report.data.reconciled,
                 report.data.vigilAttendance,
                 report.data.offering,
-                report.data.notes,
+                report.data.comments,
                 new Date(report.data.meetingDate.seconds * 1000),
                 report.data.creationDate,
                 report.data.createdBy
@@ -54,10 +57,10 @@ export class FirebaseReportRepository implements ReportRepository {
         try {
             const docRef = doc(database, `${collectionName}/${report.id}`)
             await updateDoc(docRef, {
-                activeMember: report.activeMembers,
-                activeMemberChildren: report.activeMembersChildren,
-                noActiveMember: report.noActiveMembers,
-                noActiveMemberChildren: report.noActiveMembersChildren,
+                activeMembers: report.activeMembers,
+                activeMembersChildren: report.activeMembersChildren,
+                noActiveMembers: report.noActiveMembers,
+                noActiveMembersChildren: report.noActiveMembersChildren,
                 visitorChildren: report.visitorChildren,
                 visitors: report.visitors,
                 totalAttendance: report.totalAttendance,
@@ -66,8 +69,8 @@ export class FirebaseReportRepository implements ReportRepository {
                 reconciled: report.reconciled,
                 vigilAttendance: report.vigilAttendance,
                 offering: report.offering,
-                notes: report.notes,
-                meetingDate: report.notes
+                comments: report.comments,
+                meetingDate: report.meetingDate
             })
             return Promise.resolve()
         } catch (error) {
@@ -75,8 +78,6 @@ export class FirebaseReportRepository implements ReportRepository {
             return Promise.reject()
         }
     }
-
-    private collection = collection(database, collectionName)
 
     async getOneById(id: string): Promise<Report> {
         const docRef: any = doc(database, collectionName, id)
@@ -86,10 +87,10 @@ export class FirebaseReportRepository implements ReportRepository {
         return Promise.resolve(new Report(
             report.id,
             report.data.familyGroup,
-            report.data.activeMember,
-            report.data.activeMemberChildren,
-            report.data.noActiveMember,
-            report.data.noActiveMemberChildren,
+            report.data.activeMembers,
+            report.data.activeMembersChildren,
+            report.data.noActiveMembers,
+            report.data.noActiveMembersChildren,
             report.data.visitorChildren,
             report.data.visitors,
             report.data.totalAttendance,
@@ -98,7 +99,7 @@ export class FirebaseReportRepository implements ReportRepository {
             report.data.reconciled,
             report.data.vigilAttendance,
             report.data.offering,
-            report.data.notes,
+            report.data.comments,
             new Date(report.data.meetingDate.seconds * 1000),
             report.data.creationDate,
             report.data.createdBy))
@@ -106,29 +107,35 @@ export class FirebaseReportRepository implements ReportRepository {
 
     async create(report: Report): Promise<void> {
         const reportData = {
-            ...report,
+            activeMembers: report.activeMembers,
+            activeMembersChildren: report.activeMembersChildren,
+            noActiveMembers: report.noActiveMembers,
+            noActiveMembersChildren:report.noActiveMembersChildren,
+            visitorChildren: report.visitorChildren,
+            visitors: report.visitors,
+            totalAttendance:report.totalAttendance,
+            visitedHomes: report.visitedHomes,
+            newChristians: report.newChristians,
+            reconciled: report.reconciled,
+            vigilAttendance: report.vigilAttendance,
+            offering: report.offering,
+            comments: report.comments,
+            meetingDate: report.creationDate,
+            creationDate: report.createdBy,
+            createdBy: report.createdBy,
             familyGroup: {
-                name: report.familyGroup?.name || "",
-                color: report.familyGroup?.color || ""
+                id: report.familyGroup?.id,
+                name: report.familyGroup?.name,
+                color: report.familyGroup?.color,
+                teacher: report.familyGroup?.teacher,
+                anfitrion: report.familyGroup?.anfitrion,
+                leaders: report.familyGroup?.leaders,
+                meetingDay: report.familyGroup?.meetingDay,
+                meetingTime: report.familyGroup?.meetingTime
             }
         };
 
         await addDoc(this.collection, reportData);
         return Promise.resolve()
-    }
-
-    getStartEndWeek() {
-        const now = new Date();
-
-        // Calcular el inicio de la semana (lunes)
-        const startOfWeek = new Date(now);
-        startOfWeek.setDate(now.getDate() - now.getDay() + 1); // Ajusta el primer día de la semana (lunes)
-        startOfWeek.setHours(0, 0, 0, 0);
-
-        // Calcular el fin de la semana (domingo)
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 6); // Domingo
-        endOfWeek.setHours(23, 59, 59, 999);
-        return { startOfWeek, endOfWeek }
     }
 }

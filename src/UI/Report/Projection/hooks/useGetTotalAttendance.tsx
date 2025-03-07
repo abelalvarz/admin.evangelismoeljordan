@@ -40,7 +40,7 @@ export const useGetTotalAttendance = ({ initialDate, finalDate }: Prosp) => {
         const newValues: number[] = [];
         const newColors: string[] = [];
 
-        response.forEach((item: any) => {
+        response.data.forEach((item: any) => {
             console.log(item)
             newLabels.push(item.familyGroup?.name || "");
             newValues.push(parseInt(item.totalAttendance));

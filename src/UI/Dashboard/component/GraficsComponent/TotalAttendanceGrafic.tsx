@@ -38,9 +38,9 @@ export const TotalAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
         const response = await reportService.getTotalWeekAttendance.execute(initialDate, finalDate);
         setLoading(false)
 
-        if (!response) return;
+        if (!response.success) return;
 
-        const { newLabels, newValues, newColors } = extractData(response);
+        const { newLabels, newValues, newColors } = extractData(response.data);
         setData({ ...data, labels: newLabels, values: newValues, colors: newColors });
     };
 
