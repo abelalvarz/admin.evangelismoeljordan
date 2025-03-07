@@ -51,7 +51,7 @@ export const ReportDetailComponent = ({ data }: Props) => {
         if (!response) {
             return;
         }
-        setReportDetail(response)
+        setReportDetail(response.data)
     }
     
     return (
