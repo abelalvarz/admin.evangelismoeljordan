@@ -3,6 +3,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import { ToastProvider } from './context/ToastContext';
 import { AuthProvider } from './context/AuthContext';
 import { LoadingProvider } from './context/LoadingContext';
+import './utils/locale'
 
 export const App = () => {
     return (

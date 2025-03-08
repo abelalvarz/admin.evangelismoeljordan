@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ResumeCardComponent } from './component/ResumenCardComponent/ResumeCardComponent'
 import { GraficsComponent } from './component/GraficsComponent/GraficsComponent'
 import { FilterDataComponent } from '../App/component/FilterDataComponent'
-
+import '../App/utils/locale'
 export const DashboardPage = () => {
 
     const initialDateRange = {

@@ -74,6 +74,7 @@ export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
                         readOnlyInput
                         placeholder='Seleccionar'
                         hideOnRangeSelection
+                        locale='es'
                         icon="pi pi-angle-down"
                         showIcon />
                 </div>
@@ -86,6 +87,7 @@ export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
                         className='bg-gray-100 mx-0  rounded-md'
                         selectionMode="single"
                         readOnlyInput
+                        locale='es'
                         placeholder='Seleccionar'
                         hideOnRangeSelection
                         icon="pi pi-angle-down"

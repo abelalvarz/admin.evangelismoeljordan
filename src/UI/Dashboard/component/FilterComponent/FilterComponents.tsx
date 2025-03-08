@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Calendar } from 'primereact/calendar'
 import { getPeriodTime } from '../../../App/utils/getPeriodOfTime';
-
 interface Props {
     dateRange: []
     handleRangeOnChange: (value: any) => void;
@@ -51,6 +50,7 @@ export const FilterComponents = ({ dateRange, handleRangeOnChange }: Props) => {
                         className='bg-blue-400 mx-0 rounded-md'
                         selectionMode="range"
                         readOnlyInput
+                        locale='es'
                         hideOnRangeSelection
                         showIcon />
                 </div>
