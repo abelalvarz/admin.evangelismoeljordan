@@ -9,22 +9,23 @@ import { Report } from "../../../../../Core/Reports/domain/model/Report"
 import { ReportService } from "../../../../../Core/Reports/infrastructure/service/ReportService"
 
 interface Props {
-    data?: Report
+    data?: Report,
+    isProjection?: boolean
 }
 
-export const ReportDetailComponent = ({ data }: Props) => {
+export const ReportDetailComponent = ({ data, isProjection }: Props) => {
     const reportService = ReportService;
     const { id } = useParams()
 
     const [reportDetail, setReportDetail] = useState<Report>({
         id: "",
         familyGroup: null,
-        activeMembers:null,
+        activeMembers: null,
         activeMembersChildren: null,
         noActiveMembers: null,
         noActiveMembersChildren: null,
         visitorChildren: null,
-        visitors:null,
+        visitors: null,
         totalAttendance: null,
         visitedHomes: null,
         newChristians: null,
@@ -53,9 +54,9 @@ export const ReportDetailComponent = ({ data }: Props) => {
         }
         setReportDetail(response.data)
     }
-    
+
     return (
-        <div className="w-[40%] h-full flex flex-col items-center box-border  border-gray-500 border-[1px] bg-slate-50 px-5 py-3 rounded-lg pb-10 relative overflow-hidden">
+        <div className="w-[40%] my-5 h-fit flex flex-col items-center justify-center box-border  border-gray-500 border-[1px] bg-slate-50 px-5  rounded-lg  relative overflow-hidden">
             <div className="flex flex-col items-center justify-center text-center  w-full">
                 <h1 className="text-4xl font-bold">{reportDetail?.familyGroup?.name}</h1>
                 <h2>Guatemala, {reportDetail?.meetingDate && format(reportDetail?.meetingDate, "EEEE d 'de' MMMM yyyy", { locale: es })}</h2>
@@ -63,7 +64,11 @@ export const ReportDetailComponent = ({ data }: Props) => {
             <div className="flex flex-col w-full box-border  justify-evenly ">
                 <AttendanceSection data={reportDetail} />
                 <EvangelismSection data={reportDetail} />
-                <OfferingSection data={reportDetail} />
+                {
+                    !isProjection && (
+                        <OfferingSection data={reportDetail} />
+                    )
+                }
             </div>
         </div>
     )

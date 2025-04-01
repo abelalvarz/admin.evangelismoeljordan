@@ -34,6 +34,7 @@ export const useGetAllReports = () => {
         reports,
         loading,
         rangeOfDate,
-        handleRangeOnChange
+        handleRangeOnChange,
+        
     }
 }

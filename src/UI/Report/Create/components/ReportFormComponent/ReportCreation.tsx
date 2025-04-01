@@ -54,7 +54,7 @@ export const ReportCreation = ({ data, onChangeData, handleShowDialog, disabled 
             <div className='w-full flex justify-end items-end mt-5 '>
                 <Button
                     className={`${activeStep == 0 ? 'hidden' : 'w-[15%] max-sm:w-full  bg-red-400 p-4 mr-2'}`}
-                    label="Back"
+                    label="Regresar"
                     severity="secondary"
                     icon="pi pi-arrow-left" onClick={() => handlePrevStep()} />
 
@@ -62,7 +62,7 @@ export const ReportCreation = ({ data, onChangeData, handleShowDialog, disabled 
                     className='w-[15%] max-sm:w-full  bg-green-400 p-4'
                     label={activeStep === 2 ? 'Enviar' : 'Siguiente'}
                     iconPos="right"
-                    icon={`${activeStep === 2 ? 'pi pi-check' : 'pi pi-arrow-right'}`}
+                    icon={`${activeStep === 2 ? 'pi pi-send' : 'pi pi-arrow-right'}`}
                     onClick={() => activeStep == 2 ? handleShowDialog() : handleNextStep()} />
             </div>
         </div>

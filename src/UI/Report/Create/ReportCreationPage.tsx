@@ -38,6 +38,7 @@ export const ReportCreationPage = () => {
     const [disabled, setDisabled] = useState(false)
 
     const handleOnchangeData = (newValues: Object) => {
+        console.log(newValues)
         setReport((preValues) => ({
             ...preValues,
             ...newValues

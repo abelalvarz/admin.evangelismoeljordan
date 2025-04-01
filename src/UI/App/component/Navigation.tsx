@@ -31,7 +31,7 @@ export const Navigation = () => {
 				</button>
 			</div>
 			<div
-				className={`fixed bg-blue-950 min-w-[10vw] lg:w-[12%] h-full md:w-[10%] md:ml-0 sm:w-full sm:z-10 ${visible ? 'max-sm:ml-[0] sm:ml-[0]' : 'max-sm:ml-[-100%] sm:ml-[-100%]'} max-sm:w-full max-sm:z-10 duration-500`}      >
+				className={`fixed bg-blue-950 min-w-[10vw] lg:w-[15%] h-full md:w-[15%] md:ml-0 sm:w-full sm:z-10 ${visible ? 'max-sm:ml-[0] sm:ml-[0]' : 'max-sm:ml-[-100%] sm:ml-[-100%]'} max-sm:w-full max-sm:z-10 duration-500`}      >
 				<ul>
 					<button
 						className='absolute top-5 right-10 '
@@ -65,7 +65,7 @@ export const Navigation = () => {
 							auth.logout()
 						}}>
 							<FaPowerOff className='text-center' size={20} />
-							Logout
+							Salir
 						</button>
 					</div>
 				</ul>

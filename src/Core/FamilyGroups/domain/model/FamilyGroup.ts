@@ -5,7 +5,7 @@ export class FamilyGroup {
         readonly color: string,
         readonly teacher: string,
         readonly anfitrion: string,
-        readonly leaders: string,
+        readonly leaders: string[],
         readonly meetingDay: string,
         readonly meetingTime: string
     ) { }

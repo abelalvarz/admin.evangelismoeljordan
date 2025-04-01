@@ -17,7 +17,7 @@ export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
     const [selectedDate, setSelectedDate] = useState(initialSelectDate)
 
     useEffect(() => {
-        handleWeekSelection(12)
+        handleWeekSelection(0)
     }, [])
 
     const handleDateOnchange = (newValues: object) => {
@@ -45,19 +45,19 @@ export const FilterDataComponent = ({ handleRangeOnChange }: Props) => {
             <div>
                 <button
                     name="currentWeek"
-                    onClick={() => handleFilter("currentWeek", 12)}
+                    onClick={() => handleFilter("currentWeek", 0)}
                     className={filterButtonStyle("currentWeek")}>
                     Semana Actual
                 </button>
                 <button
                     name="lastWeek"
-                    onClick={() => handleFilter("lastWeek", 5)}
+                    onClick={() => handleFilter("lastWeek", 1)}
                     className={filterButtonStyle("lastWeek")}>
                     Semana Pasada
                 </button>
                 <button
                     name="beforeLastWeek"
-                    onClick={() => handleFilter("beforeLastWeek", -2)}
+                    onClick={() => handleFilter("beforeLastWeek", 2)}
                     className={filterButtonStyle("beforeLastWeek")} >
                     Semana Antepasada
                 </button>

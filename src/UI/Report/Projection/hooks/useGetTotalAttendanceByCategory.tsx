@@ -20,6 +20,7 @@ const initialState: Category = {
 export const useGetTotalAttendanceByCategory = ({ initialDate, finalDate }: Props) => {
     const reportService = ReportService;
     const [totalCategories, setTotalAttendance] = useState<Category>(initialState)
+    const [loading, setLoading] =useState(false)
 
     useEffect(() => {
         if (initialDate && finalDate) {
@@ -28,8 +29,9 @@ export const useGetTotalAttendanceByCategory = ({ initialDate, finalDate }: Prop
     }, [initialDate, finalDate]);
 
     const getCategoryAttendance = async () => {
+        setLoading(true)
         const response = await reportService.getTotalCategoryAttendance.execute(initialDate, finalDate);
-
+        setLoading(false)
         const newLabels: string[] = [];
         const newValues: number[] = [];
 
@@ -41,6 +43,6 @@ export const useGetTotalAttendanceByCategory = ({ initialDate, finalDate }: Prop
         setTotalAttendance({ ...totalCategories, labels: newLabels, data: newValues })
     };
     return {
-        totalCategories
+        totalCategories,loading
     }
 }

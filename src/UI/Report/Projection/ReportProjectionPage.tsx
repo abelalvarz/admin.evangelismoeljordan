@@ -52,7 +52,7 @@ export const ReportProjectionPage = () => {
                             )}
                             {item.type !== 'totalAttendance' && item.type !== 'attendanceByCategory' && (
                                 <div className={`w-full h-[85%] flex justify-center items-center ${active === index ? '' : 'hidden'} `}>
-                                    <ReportDetailComponent data={item} />
+                                    <ReportDetailComponent data={item} isProjection/>
                                 </div>
                             )}
                         </React.Fragment>
