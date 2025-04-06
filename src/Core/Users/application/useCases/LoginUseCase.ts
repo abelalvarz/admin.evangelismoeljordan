@@ -23,7 +23,10 @@ export class LoginUseCase {
         if (!user)
             return new Response(false, "Datos de usuario invalidos", null);
 
-        return new Response(true, "Login exitoso", {
+        if(!user.role.includes('admin') && !user.role.includes('admin_secretary'))
+            return new Response(false, "No tienes permisos suficientes para ingresar", null);
+
+        return new Response(true, "Login exitoso", { 
             name: user.name,
             email: user.email,
             role: user.role,

@@ -9,7 +9,7 @@ interface Auth {
         logged: boolean,
         name: string,
         email: string,
-        role: string
+        role: string[]
     };
     login: (value: any) => void;
     logout: () => void;
@@ -24,7 +24,7 @@ const AuthContext = createContext<Auth | undefined>(undefined);
 const initialState = {
     name: '',
     email: '',
-    role: '',
+    role: [],
     logged: false,
     token: ''
 }

@@ -14,10 +14,11 @@ export class FirebaseUserRepository implements UserRepository {
         try {
             const createdUser = await createUserWithEmailAndPassword(auth, user.email, user.password);
 
-            console.log(createdUser)
+            const roles = []
+            roles.push(user.role)
 
             const userDocRef = doc(firebase, `${collectionName}/${createdUser.user.uid}`)
-            await setDoc(userDocRef, { name: user.name, email: user.email, role: 'Admin', })
+            await setDoc(userDocRef, { name: user.name, email: user.email, role: roles, })
 
             return Promise.resolve(user);
         } catch (error) {

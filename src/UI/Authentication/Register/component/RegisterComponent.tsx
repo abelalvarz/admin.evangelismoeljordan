@@ -6,8 +6,8 @@ import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom"
 
 const roles = [
-    {label:'Presidente', value: "president"},
-    {label:'Secretario', value: "evangelism_secretary"},
+    {label:'Presidente', value: "admin"},
+    {label:'Secretario', value: "admin_secretary"},
 ]
 interface Props {
     user: any,

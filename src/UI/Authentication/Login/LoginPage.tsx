@@ -37,7 +37,7 @@ export const LoginPage = () => {
 		loading?.stop()
 
 		if (!response.success || !response.data)
-			return toast?.show('error', 'Error', 'Email o Contraseña incorrecto')
+			return toast?.show('error', 'Error', response.message)
 
 		toast?.show('success', 'Exito', 'Login realizado con exito')
 		setTimeout(() => {
