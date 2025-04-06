@@ -50,7 +50,6 @@ export const TotalAttendanceGrafic = ({ initialDate, finalDate }: Prosp) => {
         const newColors: string[] = [];
 
         response.forEach((item: any) => {
-            console.log(item)
             newLabels.push(item.familyGroup?.name || "");
             newValues.push(parseInt(item.totalAttendance));
             newColors.push(item.familyGroup?.color || "")

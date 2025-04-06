@@ -3,8 +3,6 @@ import { ConfirmationDialog } from '../../../Create/components/ConfirmationCompo
 
 export const ReportEditor = ({ title, report, handleOnchangeData, handleSave, disabled, showDialog, setShowDialog, save }: any) => {
 
-    console.log(report)
-
     return (
         <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md'>
             <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-100 p-10 max-sm:bg-transparent rounded-md top-0 `}>

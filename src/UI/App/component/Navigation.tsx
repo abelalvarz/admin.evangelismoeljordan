@@ -13,8 +13,6 @@ export const Navigation = () => {
 	const [visible, setVisible] = useState(false)
 	const location = useLocation()
 
-	console.log(location.pathname)
-
 	if (!auth?.loggedUser.logged) {
 		return <></>;
 	}
@@ -61,7 +59,6 @@ export const Navigation = () => {
 					}
 					<div className='absolute w-full flex justify-center  items-center bottom-0 px-5 py-5 '>
 						<button className='text-white flex flex-col justify-center  items-center' onClick={() => {
-							console.log("logout");
 							auth.logout()
 						}}>
 							<FaPowerOff className='text-center' size={20} />

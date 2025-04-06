@@ -14,10 +14,9 @@ const getInitTime = (weekBack:number) => {
     const newDate = new Date();
     newDate.setDate(newDate.getDate()+timeDiff-timeBack)
 
-    console.log(newDate.toDateString())
     return newDate;
 }
-const getFinishTime = (weekBack:number) =>{
+export const getFinishTime = (weekBack:number) =>{
     const date = new Date();
     const passedTime = 2-date.getDay()
     const timeDiff = passedTime + 7
@@ -26,6 +25,5 @@ const getFinishTime = (weekBack:number) =>{
     const newDate = new Date();
     newDate.setDate(newDate.getDate()+timeDiff-timeBack)
 
-    console.log(newDate.toDateString())
     return newDate;
 }

@@ -7,7 +7,6 @@ export const Router = () => {
 
     const { loggedUser } = useAuth()!
 
-    console.log(loggedUser)
     return (
         <BrowserRouter>
             <Navigation />

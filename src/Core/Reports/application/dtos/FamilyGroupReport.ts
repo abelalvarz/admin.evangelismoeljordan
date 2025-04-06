@@ -1,6 +1,7 @@
+type Status = 'RECEIVED' | 'NOT_RECEIVED' | 'PENDING'
 export interface FamilyGroupReport{
     familyGroup:string,
-    status:string,
+    status:Status,
     meetingDate:Date | null,
     reportId: string | null | undefined
 }

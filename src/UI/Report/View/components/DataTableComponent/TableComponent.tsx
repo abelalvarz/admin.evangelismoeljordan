@@ -30,7 +30,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
     }
 
     const actionBody = (item: FamilyGroupReport) => {
-        if(item.status === 'Pendiente')
+        if(item.status !== 'RECEIVED' )
             return <></>
         return (
             <div className="flex justify-around">
@@ -79,11 +79,16 @@ export const TableComponent = ({ data, loading = false }: Props) => {
     ]
 
     const statusBody = (item:FamilyGroupReport)=>{
-        if(item.status==='Pendiente'){
-            return <Tag severity="danger" value={item.status}></Tag>
+        if(item.status==='NOT_RECEIVED'){
+            return <Tag severity="danger" value="No Recibido"></Tag>
         }
+
+        if(item.status==='PENDING'){
+            return <Tag severity="warning" value="Pendiente"></Tag>
+        }
+
         return (
-            <Tag severity="success" value={item.status}></Tag>
+            <Tag severity="success" value="Recibido"></Tag>
         )
     }
 

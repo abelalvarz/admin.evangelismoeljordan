@@ -34,7 +34,7 @@ export const GroupInformation = ({ onChangeData, data }: Props) => {
                     inputClassName='p-2'
                     showIcon
                     locale='es'
-                    onChange={(e: any) => onChangeData({ 'meetingDate': e.value })}
+                    onChange={(e: any) => onChangeData({ 'meetingDate': e.target.value })}
                     className='w-fiull border-gray-300 border-x-2 border-y-2 rounded-md outline-none'
                 />
             </div>

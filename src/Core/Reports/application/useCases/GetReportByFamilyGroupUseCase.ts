@@ -1,3 +1,4 @@
+import { getFinishTime } from "../../../../UI/App/utils";
 import { Response } from "../../../Config/Response";
 import { FamilyGroupService } from "../../../FamilyGroups/infrastructure/service/FamiltyGroupService";
 import { ReportRepository } from "../../domain/repository/ReportRepository";
@@ -20,10 +21,12 @@ export class GetReportByFamilyGroupUseCase {
             existingFamilyGroup.push({
                 familyGroup: report.familyGroup?.name ||"",
                 meetingDate:report.meetingDate,
-                status: 'Recibido',
+                status: 'RECEIVED',
                 reportId: report.id
+
             })
         })
+        const finishDate = getFinishTime(2);
 
         const existingGroupDataSet = new Set(existingFamilyGroup.map(item=> item.familyGroup))
         familyGroups.data.forEach((item:any)=>{
@@ -31,17 +34,16 @@ export class GetReportByFamilyGroupUseCase {
                 existingFamilyGroup.push({
                     familyGroup: item.name,
                     meetingDate: null,
-                    status: 'Pendiente',
+                    status: finishDate < endDate ? 'PENDING' : 'NOT_RECEIVED',
                     reportId: null
                 }) 
             }
         })
         
-        if(!existingFamilyGroup.some(item=>item.status==='Recibido' )){
-            return new Response(true, "Reportes obtenidos con exito", [])
+        if(!existingFamilyGroup.some(item=>item.status==='RECEIVED' )){
+            return new Response(true, "No se recibieron reportes", [])
         }
 
-        console.log(existingFamilyGroup)
         return new Response(true, "Reportes obtenidos con exito", existingFamilyGroup)
     }
 }
