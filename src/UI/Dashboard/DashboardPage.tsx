@@ -16,7 +16,7 @@ export const DashboardPage = () => {
 
     return (
         <div className='page-container'>
-            <div className='relative h-full flex flex-col justify-evenly '>
+            <div className='relative h-full flex flex-col justify-around  '>
                 <div className="title-container">
                     <h1 className="title-content">Dashboard</h1>
                 </div>

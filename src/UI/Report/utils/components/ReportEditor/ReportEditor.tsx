@@ -4,8 +4,8 @@ import { ConfirmationDialog } from '../../../Create/components/ConfirmationCompo
 export const ReportEditor = ({ title, report, handleOnchangeData, handleSave, disabled, showDialog, setShowDialog, save }: any) => {
 
     return (
-        <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md'>
-            <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-100 p-10 max-sm:bg-transparent rounded-md top-0 `}>
+        <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md '>
+            <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-100 p-10 max-sm:bg-transparent rounded-md top-0 max-md:p-0 max-md:mt-10`}>
 
                 <div className='title-container'>
                     <h1 className='title-content'>{title ? title : 'Nuevo Reporte'}</h1>

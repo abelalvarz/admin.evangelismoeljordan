@@ -19,7 +19,7 @@ export const RegisterComponent = ({user, handleOnChange, handleSubmit}:Props) =>
     return (
         <div className="w-full h-[100vh] flex justify-center items-center bg-[url(/background.jpg)] bg-cover bg-center ">
             <div className="w-full h-full flex flex-col justify-center items-center bg-[rgba(0,0,0,0.5)]">
-                <div className="w-[30%] h-[70%] flex flex-col justify-center items-center backdrop-blur-md rounded-md">
+                <div className="w-[30%] h-[70%] flex flex-col justify-center items-center backdrop-blur-md rounded-md max-md:w-full">
                     <div className="title-container min-h-[20%] ">
                         <h1 className="title-content font-extrabold text-white">Evangelismo</h1>
                     </div>

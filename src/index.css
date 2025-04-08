@@ -34,11 +34,11 @@ body {
     }
 
     .graph-container {
-        @apply w-full h-full box-border overflow-hidden relative
+        @apply w-full h-full box-border overflow-hidden relative max-md:w-full
     }
 
     .graph-content {
-        @apply w-full h-full box-border flex justify-center items-center
+        @apply w-full h-full box-border flex justify-center items-center 
     }
 
     .auth-field-container {

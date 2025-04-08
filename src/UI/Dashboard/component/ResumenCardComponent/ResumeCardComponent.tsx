@@ -34,8 +34,8 @@ export const ResumeCardComponent = ({ initialDate, finalDate }: Props) => {
     };
 
     return (
-        <div className='flex justify-between '>
-            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full mr-5'>
+        <div className='flex justify-between max-md:flex-col '>
+            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full mr-5 max-md:mb-1'>
                 <div className='p-5 bg-blue-300 rounded-full mr-3'>
                     <BsPeople size={30} color='blue' />
                 </div>
@@ -44,7 +44,7 @@ export const ResumeCardComponent = ({ initialDate, finalDate }: Props) => {
                     <h3>Asistencia Total</h3>
                 </div>
             </div>
-            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full mr-5'>
+            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full mr-5 max-md:mb-1'>
                 <div className='p-5 bg-blue-300 rounded-full mr-3'>
                     <TbFriends size={30} color='blue' />
                 </div>
@@ -53,7 +53,7 @@ export const ResumeCardComponent = ({ initialDate, finalDate }: Props) => {
                     <h3>Total Visitantes</h3>
                 </div>
             </div>
-            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full mr-5'>
+            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full mr-5 max-md:mb-1'>
                 <div className='p-5 bg-blue-300 rounded-full mr-3'>
                     <BsHouse size={30} color='blue' />
                 </div>
@@ -62,7 +62,7 @@ export const ResumeCardComponent = ({ initialDate, finalDate }: Props) => {
                     <h3>Hogares Visitados</h3>
                 </div>
             </div>
-            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full '>
+            <div className='bg-gray-50 p-5 py-10 rounded-md flex items-center w-full max-md:mb-1'>
                 <div className='p-5 bg-blue-300 rounded-full mr-3'>
                     <GoPeople size={30} color='blue' />
                 </div>

@@ -2,13 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
+import { isSmallScreen } from '../utils';
 
-interface Props{
+interface Props {
     label: string[],
     colors: string[],
     value: number[]
 }
-export const BarChart = ({label, value, colors}:Props) => {
+const adjustFontSize = () => {
+    const smallScreenFontSize = 12;
+    const largeScreenFontSize = 17;
+    return isSmallScreen() ? smallScreenFontSize : largeScreenFontSize;
+};
+
+
+export const BarChart = ({ label, value, colors }: Props) => {
 
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
@@ -22,7 +30,7 @@ export const BarChart = ({label, value, colors}:Props) => {
             datasets: [
                 {
                     label: 'Asistentes',
-                    backgroundColor: colors, 
+                    backgroundColor: colors,
                     borderColor: ['#007bff', '#28a745', '#fd7e14', '#6f42c1'],
                     data: value
                 }
@@ -42,21 +50,22 @@ export const BarChart = ({label, value, colors}:Props) => {
                         color: textColorSecondary,
                         font: {
                             weight: 100,
-                            size: 17,
-                        display: false
+                            size: adjustFontSize(),
+
+                            display: false
 
                         }
                     },
                     grid: {
                         display: false,
                         drawBorder: false,
-                        
+
                     }
                 },
                 y: {
                     ticks: {
                         color: textColorSecondary,
-                        
+                        font: { size: adjustFontSize() }
                     },
                     grid: {
                         color: surfaceBorder,
@@ -72,7 +81,7 @@ export const BarChart = ({label, value, colors}:Props) => {
 
     return (
         <div className="graph-container" >
-            <Chart type="bar" data={chartData} options={chartOptions} className='graph-content' />
+            <Chart type="bar" data={chartData} options={chartOptions} className='graph-content ' />
         </div>
     )
 }

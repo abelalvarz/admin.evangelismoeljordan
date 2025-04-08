@@ -1,5 +1,6 @@
 import { Toast } from "primereact/toast";
 import { createContext, useContext, useRef } from "react";
+import { isSmallScreen } from "../utils";
 
 interface ToastProps {
     show: (type: SeverityType, title: String, message: String) =>void;
@@ -17,7 +18,7 @@ export const ToastProvider = ({ children }: any) => {
 
     return (
         <ToasContext.Provider value={{show}} >
-            <Toast ref={toast} />
+            <Toast ref={toast} position={`${isSmallScreen() ? 'top-center': 'top-right'}`}/>
             {children}
         </ToasContext.Provider>
     )

@@ -21,17 +21,19 @@ export const ReportProjectionPage = () => {
         setActive(0)
     }, [rangeOfDate])
 
-    const projectionData = useMemo(() => ([
-        ...reports,
-        { type: "totalAttendance" },
-        { type: "attendanceByCategory" }
-    ]), [reports, totalAttendance, totalCategories])
+    const projectionData = useMemo(() => {
+        return [
+            ...reports,
+            { type: "totalAttendance" },
+            { type: "attendanceByCategory" }
+        ]
+    }, [reports, totalAttendance, totalCategories])
 
     return (
         <div className='page-container'>
 
-            <div className='title-container'>
-                <h1 className='title-content'>Presentación de Reportes</h1>
+            <div className='title-container max-md:mt-10'>
+                <h1 className='title-content '>Presentación de Reportes</h1>
             </div>
 
             <FilterDataComponent handleRangeOnChange={handleRangeOnChange} />
@@ -51,14 +53,14 @@ export const ReportProjectionPage = () => {
                                 </div>
                             )}
                             {item.type !== 'totalAttendance' && item.type !== 'attendanceByCategory' && (
-                                <div className={`w-full h-[85%] flex justify-center items-center ${active === index ? '' : 'hidden'} `}>
-                                    <ReportDetailComponent data={item} isProjection/>
+                                <div className={`w-full h-[85%] max-md:h-full flex justify-center items-center ${active === index ? '' : 'hidden'} `}>
+                                    <ReportDetailComponent data={item} isProjection />
                                 </div>
                             )}
                         </React.Fragment>
                     ))}
                     {reports.length === 0 && (
-                        <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100}/> </h1>
+                        <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100} /> </h1>
                     )}
                 </div>
             </FullScreenComponent>

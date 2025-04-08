@@ -25,7 +25,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
 
     const meetingDateBody = (row: any) => {
         return (
-            <p>{row.meetingDate && format(row.meetingDate, "EEEE d 'de' MMMM yyyy", { locale: es })}</p>
+            <p className="max-md:text-sm">{row.meetingDate && format(row.meetingDate, "EEEE d 'de' MMMM yyyy", { locale: es })}</p>
         )
     }
 
@@ -34,7 +34,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
             return <></>
         return (
             <div className="flex justify-around">
-                <button className="bg-green-300 p-3 rounded-full pi pi-eye mr-2 hover:bg-green-400" onClick={() => handleViewDetail(item.reportId || "")} />
+                <button className="bg-green-300 p-3 rounded-full pi pi-eye mr-2 hover:bg-green-400 " onClick={() => handleViewDetail(item.reportId || "")} />
                 <button className="bg-gray-300 p-3 rounded-full pi pi-pencil mr-2 hover:bg-gray-400" onClick={() => handleEditReport(item.reportId || "")} />
                 <button className="bg-red-300 p-3 rounded-full pi pi-trash hover:bg-red-400" onClick={() => handleDelete(item.reportId || "")} />
             </div>
@@ -93,7 +93,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
     }
 
     return (
-        <div className="card  max-sm:mt-20 ">
+        <div className="card  max-md:m-0 ">
             <DataTable
                 loading={loading}
                 tableClassName=" p-5"
@@ -103,7 +103,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
                 emptyMessage="No se encotraron reportes"
                 rowClassName={(_) => "border-b-gray-200 border-b-[1px]"}
                 tableStyle={{ minWidth: '50vw', }}>
-                <Column sortable field="familyGroup" header="Nombre" ></Column>
+                <Column sortable field="familyGroup" header="Nombre" className="max-md:text-sm" ></Column>
                 <Column header="Fecha de reunion" body={meetingDateBody}></Column>
                 <Column headerClassName="text-center" body={statusBody} header="Estado"></Column>
                 <Column headerClassName="flex justify-center items-center h-20" bodyClassName={"text-center"} className="w-10 " body={actionBody} header="Acciones"></Column>

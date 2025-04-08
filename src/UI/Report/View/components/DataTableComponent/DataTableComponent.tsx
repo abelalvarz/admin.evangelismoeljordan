@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FilterDataComponent } from '../../../../App/component/FilterDataComponent'
 import { TableComponent } from './TableComponent'
 import { ReportService } from '../../../../../Core/Reports/infrastructure/service/ReportService'
@@ -35,9 +35,9 @@ export const DataTableComponent = () => {
     const handleRangeOnChange = (value: any) => setRangeOfDate((prev: any) => ({ ...prev, ...value }))
 
     return (
-        <React.Fragment>
+        <div className='pb-10'>
             <FilterDataComponent handleRangeOnChange={handleRangeOnChange} />
             <TableComponent data={reports} loading={loading} />
-        </React.Fragment>
+        </div>
     )
 }

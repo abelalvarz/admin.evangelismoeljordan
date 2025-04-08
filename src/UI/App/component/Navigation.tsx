@@ -6,6 +6,7 @@ import { PrivateRoutes } from '../config/AppRoutes';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaPowerOff } from 'react-icons/fa';
+import { isSmallScreen } from '../utils';
 
 export const Navigation = () => {
 
@@ -46,9 +47,12 @@ export const Navigation = () => {
 					{
 						PrivateRoutes.map((route, i) => {
 							if (!route.icon) return;
+							if (isSmallScreen() && route.path === '/proyectar')
+								return;
 							return (
 								<Link
 									key={i}
+									onClick={() => setVisible(!visible)}
 									className={`${location.pathname === route.path ? 'text-white' : 'text-gray-400'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
 									to={route.path}>
 									<span className='mr-2'> {route.icon}</span>
