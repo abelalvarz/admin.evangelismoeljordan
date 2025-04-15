@@ -56,7 +56,7 @@ export const ReportDetailComponent = ({ data, isProjection }: Props) => {
     }
 
     return (
-        <div className="w-[40%] max-md:w-full max-md:h-full max-md:overflow-y-auto max-md:mt-5 my-5 h-fit flex flex-col items-center justify-center box-border  border-gray-500 border-[1px] bg-slate-50 px-5  rounded-lg  relative overflow-hidden">
+        <div className="w-[40%] max-md:w-full max-md:h-full max-md:overflow-y-auto max-md:mt-5 my-5 h-fit flex flex-col items-center justify-center box-border  border-gray-500 border-[1px] bg-slate-50 p-5  rounded-lg  relative overflow-hidden">
             <div className="flex  flex-col items-center justify-center text-center  w-full">
                 <h1 className="text-4xl font-bold max-md:text-2xl max-md:mt-5">{reportDetail?.familyGroup?.name}</h1>
                 <h2>Guatemala, {reportDetail?.meetingDate && format(reportDetail?.meetingDate, "EEEE d 'de' MMMM yyyy", { locale: es })}</h2>

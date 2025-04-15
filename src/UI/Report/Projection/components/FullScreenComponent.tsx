@@ -59,7 +59,7 @@ export const FullScreenComponent = ({ dataSize, handleOnchange, children }: Prop
 
     return (
         <React.Fragment>
-            <FullScreen handle={handle} className={`w-full h-[80%] flex justify-center items-center bg-gray-50 relative rounded-md`}>
+            <FullScreen handle={handle} className={`w-full h-[95%] flex justify-center items-center bg-gray-50 relative rounded-md`}>
                 {children}
 
                 <div className="w-full  absolute flex justify-between">
