@@ -59,7 +59,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
             toast?.show('warn', 'Info', 'Debe seleccionar un formulario con id valido')
             return
         }
-        navigate(`/detalle-reporte/${id}`)
+        navigate(`/reportes/detalle/${id}`)
     }
 
     const handleEditReport = (id: string) => {
@@ -67,7 +67,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
             toast?.show('warn', 'Info', 'Debe seleccionar un formulario con id valido')
             return
         }
-        navigate(`/editar/${id}`)
+        navigate(`/reportes/editar/${id}`)
 
     }
 
@@ -115,7 +115,6 @@ export const TableComponent = ({ data, loading = false }: Props) => {
                 value={data}
                 emptyMessage="No se encotraron reportes"
                 rowClassName={(_) => "border-b-gray-200 border-b-[1px]"}
-                // tableStyle={{ minWidth: '50vw', height: '100%' }}
                 >
                 <Column sortable field="familyGroup" header="Nombre del Grupo" className="max-md:text-sm" ></Column>
                 <Column sortable field="teacher" header="Maestro" className="max-md:text-sm" ></Column>
@@ -123,7 +122,7 @@ export const TableComponent = ({ data, loading = false }: Props) => {
                 <Column headerClassName="text-center" body={statusBody} header="Estado"></Column>
                 <Column headerClassName="flex justify-center items-center h-20" bodyClassName={"text-center"} className="w-10 " body={actionBody} header="Acciones"></Column>
             </DataTable>
-            <ConfirmationDialog visible={showConfirmation} onHide={() => setShowConfirmation(false)} handleSave={deleteReport} />
+            <ConfirmationDialog message="Seguro de Eliminar el reporte" visible={showConfirmation} onHide={() => setShowConfirmation(false)} handleSave={deleteReport} />
         </div>
     )
 }

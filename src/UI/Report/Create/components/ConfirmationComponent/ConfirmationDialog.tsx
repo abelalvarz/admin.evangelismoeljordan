@@ -5,8 +5,9 @@ interface Props {
     visible: boolean
     onHide: VoidFunction
     handleSave: VoidFunction
+    message?: string | undefined
 }
-export const ConfirmationDialog = ({ visible, onHide, handleSave }: Props) => {
+export const ConfirmationDialog = ({ visible, onHide, handleSave, message }: Props) => {
     const footerContent = (
         <div>
             <Button label="No" icon="pi pi-times" onClick={onHide} className="p-button-text bg-red-400 px-2 py-1 " />
@@ -23,7 +24,7 @@ export const ConfirmationDialog = ({ visible, onHide, handleSave }: Props) => {
                 footer={footerContent}>
                 <div className='flex items-center justify-around'>
                     <i className='pi pi-exclamation-circle' />
-                    <p>Seguro de enviar el reporte?</p>
+                    <p>{message || "Seguro de enviar el reporte?"}</p>
                 </div>
             </Dialog>
         </div>

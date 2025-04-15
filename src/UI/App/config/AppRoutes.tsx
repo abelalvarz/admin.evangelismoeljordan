@@ -18,8 +18,8 @@ export const PrivateRoutes = [
     { name: 'Reportes', icon: <TbReportAnalytics size={25} />, path: "/reportes", element: <ReportViewPage />, isPrivate: true },
     { name: 'Proyectar Reportes', icon: <FcVideoProjector size={25} />, path: "/proyectar", element: <ReportProjectionPage />, isPrivate: true },
     { path: "*", element: <Navigate to="/dashboard" replace={true} />, isPrivate: true },
-    { path: "/detalle-reporte/:id", element: <ReportDetailView />, isPrivate: true },
-    { path: "/editar/:id", element: <UpdateReport />, isPrivate: true },
+    { path: "/reportes/detalle/:id", element: <ReportDetailView />, isPrivate: true },
+    { path: "/reportes/editar/:id", element: <UpdateReport />, isPrivate: true },
     { path: "/nuevo-reporte/:familyGroupId", element: <ReportCreationPage />, isPrivate: true },
 ]
 

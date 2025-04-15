@@ -44,7 +44,7 @@ export const Navbar = () => {
                                 <Link
                                     key={i}
                                     onClick={() => setVisible(!visible)}
-                                    className={`${location.pathname === route.path ? 'text-blue-400 bg-gradient-to-r from-[#2a3d65] to-transparent border-l-[5px] border-blue-500' : 'text-gray-300'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
+                                    className={`${location.pathname.includes(route.path) ? 'text-blue-400 bg-gradient-to-r from-[#2a3d65] to-transparent border-l-[5px] border-blue-500' : 'text-gray-300'} w-full px-5 py-2 mt-2 flex items-center  text-sm duration-200`}
                                     to={route.path}>
                                     <span className='mr-3'> {route.icon}</span>
                                     <span> {route.name}</span>
