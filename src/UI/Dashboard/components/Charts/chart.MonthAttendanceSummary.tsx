@@ -13,7 +13,6 @@ export const MonthAttendanceSummaryChar = ({ data, loading }: { data: MonthSumma
 
 
     useEffect(() => {
-
         if (data && data.weeks) {
             processWeeks()
         }
@@ -34,7 +33,7 @@ export const MonthAttendanceSummaryChar = ({ data, loading }: { data: MonthSumma
     if (loading)
         return <ProgressSpinner />
 
-    if (data?.totalAttendance === null && !loading)
+    if (weeks.length === 0 && !loading)
         return <h1 className="text-gray-400">Sin resultados <PiEmptyBold size={100} /> </h1>
 
     return (
