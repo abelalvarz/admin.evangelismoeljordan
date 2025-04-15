@@ -115,7 +115,8 @@ export const TableComponent = ({ data, loading = false }: Props) => {
                 value={data}
                 emptyMessage="No se encotraron reportes"
                 rowClassName={(_) => "border-b-gray-200 border-b-[1px]"}
-                tableStyle={{ minWidth: '50vw', height: '100%' }}>
+                // tableStyle={{ minWidth: '50vw', height: '100%' }}
+                >
                 <Column sortable field="familyGroup" header="Nombre del Grupo" className="max-md:text-sm" ></Column>
                 <Column sortable field="teacher" header="Maestro" className="max-md:text-sm" ></Column>
                 <Column header="Fecha de Reunión" body={meetingDateBody}></Column>

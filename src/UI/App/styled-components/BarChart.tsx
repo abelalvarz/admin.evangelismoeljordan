@@ -74,7 +74,7 @@ export const BarChart = ({ label, value, colors }: Props) => {
     }, [label, value]);
 
     return (
-        <div className='w-full max-h-[100%] h-[90%] relative'>
+        <div className='w-full h-[80%] relative'>
             <Chart type="bar" data={chartData} options={chartOptions} className='h-full w-full' />
         </div>
     )

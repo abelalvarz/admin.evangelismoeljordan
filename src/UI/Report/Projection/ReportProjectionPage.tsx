@@ -33,14 +33,14 @@ export const ReportProjectionPage = () => {
                 <PageHeader title="Presentación de Reportes" dateOnChange={(e: any) => seDate(e)} dateValue={date} />
             </div>
 
-            <div className="mt-3 w-full h-full">
+            <div className="mt-3 w-full h-[95vh]">
                 <FullScreenComponent dataSize={projectionData.length} handleOnchange={setActive}>
 
                     <div className="w-full h-full bg-gray-50 flex justify-center items-center rounded-lg">
                         {reports.length > 0 && projectionData.map((item: any, index: any) => (
                             <React.Fragment key={index}>
                                 {item.type === 'attendanceSummary' && (
-                                    <div className={`w-[90%] h-[90%] flex flex-col justify-center items-center box-border ${active === index ? '' : 'hidden'} `}>
+                                    <div className={`w-[90%] h-[50%] flex flex-col justify-center items-center box-border ${active === index ? '' : 'hidden'} `}>
                                         <AttendanceByGroupChart data={attendanceSummary} loading={loading} />
                                     </div>
                                 )}

@@ -29,7 +29,7 @@ export const Navbar = () => {
                 </button>
             </div>
             {/* Menu content */}
-            <div className={`2xl:w-[15rem] xl:w-[12rem] md:w-[10rem] md:relative md:z-0 w-full fixed h-full z-10 duration-700 bg-slate-800 ${visible ? 'ml-0' : 'ml-[-200%]  '} md:ml-0`}>
+            <div className={`2xl:w-[15rem] xl:w-[12rem] md:w-[10rem] w-full md:z-0  fixed h-full z-10 duration-700 bg-slate-800 ${visible ? 'ml-0' : 'ml-[-200%]  '} md:ml-0`}>
                 <div className='px-5 py-5  flex flex-col '>
                     <h1 className='md:text-xl text-2xl font-bold text-white whitespace-nowrap'>Evangelismo</h1>
                     <small className='text-white'>El Jordan</small>

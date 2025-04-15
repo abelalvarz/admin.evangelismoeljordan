@@ -9,10 +9,9 @@ export const Router = () => {
 
     return (
         <BrowserRouter>
-            {/* <Navigation /> */}
-            <div className="w-[100vw] flex h-[100vh] overflow-y-scroll overflow-x-hidden bg-scroll-[transparent]" style={{ boxSizing: 'border-box' }}>
+            <div className="w-[100%] flex h-[100vh] overflow-y-scroll overflow-x-hidden bg-scroll-[transparent]" style={{ boxSizing: 'border-box' }}>
                 <Navbar />
-                <div className="w-full h-full ">
+                <div className={`${loggedUser.logged ? '2xl:ml-[15rem] xl:ml-[12rem] md:ml-[10rem] w-full h-full ': '2xl:ml-0 xl:ml-0 md:ml-0 ml-0'} w-full h-full `}>
                     <Routes>
                         {
                             loggedUser.logged

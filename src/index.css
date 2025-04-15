@@ -9,19 +9,20 @@ body {
 .custom-scroll {
     overflow-x: scroll;
     -ms-overflow-style: none;
-    scrollbar-width: none;
+    scrollbar-width: 0;
 }
 
 .custom-scroll::-webkit-scrollbar {
     display: none;
+    scrollbar-width: 0;
 }
 
 @layer utilities {
     .page-container {
-        @apply w-full h-full p-5 bg-[rgba(255,255,255,0.07)] overflow-y-scroll overflow-x-hidden scroll-smooth
+        @apply w-full pl-3 pt-3 pb-3
     }
     .page-content {
-        @apply xl:h-full w-full flex flex-col xl:flex-row xl:justify-between py-5 overflow-y-scroll 
+        @apply xl:h-full w-full flex flex-col xl:flex-row xl:justify-between mt-3
     }
 
     .report-detail-line {

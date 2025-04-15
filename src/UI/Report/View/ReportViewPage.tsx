@@ -29,12 +29,14 @@ export const ReportViewPage = () => {
 
 
     return (
-        <div className='page-container'>
+        <div className='page-container '>
             <div className='w-full'>
                 <PageHeader title="Reportes" dateOnChange={(e: any) => setRangeOfDate(e)} dateValue={rangeOfDate} />
             </div>
             <div className='page-content'>
-                <TableComponent data={reports} loading={loading} />
+                <div className='w-full'>
+                    <TableComponent data={reports} loading={loading} />
+                </div>
             </div>
         </div>
     )
