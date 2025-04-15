@@ -2,19 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
-import { isSmallScreen } from '../utils';
 
 interface Props {
     label: string[],
     colors: string[],
     value: number[]
 }
-const adjustFontSize = () => {
-    const smallScreenFontSize = 12;
-    const largeScreenFontSize = 17;
-    return isSmallScreen() ? smallScreenFontSize : largeScreenFontSize;
-};
-
 
 export const BarChart = ({ label, value, colors }: Props) => {
 
@@ -39,6 +32,7 @@ export const BarChart = ({ label, value, colors }: Props) => {
         const options = {
             maintainAspectRatio: false,
             aspectRatio: 0.8,
+            responsive:true,
             plugins: {
                 legend: {
                     display: false,
@@ -50,7 +44,7 @@ export const BarChart = ({ label, value, colors }: Props) => {
                         color: textColorSecondary,
                         font: {
                             weight: 100,
-                            size: adjustFontSize(),
+                            size: 12,
 
                             display: false
 
@@ -65,7 +59,7 @@ export const BarChart = ({ label, value, colors }: Props) => {
                 y: {
                     ticks: {
                         color: textColorSecondary,
-                        font: { size: adjustFontSize() }
+                        font: { size: 12 }
                     },
                     grid: {
                         color: surfaceBorder,
@@ -80,8 +74,8 @@ export const BarChart = ({ label, value, colors }: Props) => {
     }, [label, value]);
 
     return (
-        <div className="graph-container" >
-            <Chart type="bar" data={chartData} options={chartOptions} className='graph-content ' />
+        <div className='w-full max-h-[100%] h-[90%] relative'>
+            <Chart type="bar" data={chartData} options={chartOptions} className='h-full w-full' />
         </div>
     )
 }

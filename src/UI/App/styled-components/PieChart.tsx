@@ -9,10 +9,10 @@ export const PieChart = ({params}:any) => {
     useEffect(() => {
         const documentStyle = getComputedStyle(document.documentElement);
         const data = {
-            labels: params.labels,
+            labels: params.categories,
             datasets: [
                 {
-                    data: params.data,
+                    data: params.totalAttendance,
                     backgroundColor: [
                         documentStyle.getPropertyValue('--blue-500'),
                         documentStyle.getPropertyValue('--yellow-500'),
@@ -33,6 +33,7 @@ export const PieChart = ({params}:any) => {
             ]
         }
         const options = {
+            responsive:true,
             plugins: {
                 legend: {
                     labels: {
@@ -47,8 +48,8 @@ export const PieChart = ({params}:any) => {
     }, [params]);
 
     return (
-        <div className="graph-container " >
-            <Chart type="pie" data={chartData} options={chartOptions} className='graph-content' />
+        <div className="w-full h-[300px] relative  " >
+            <Chart type="doughnut" data={chartData} options={chartOptions} className='h-full w-full flex justify-center items-center' />
         </div>
     )
 }

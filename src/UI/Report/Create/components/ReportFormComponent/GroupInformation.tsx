@@ -10,7 +10,7 @@ interface Props {
     data: any
 }
 
-export const GroupInformation = ({ onChangeData, data }: Props) => {
+export const  GroupInformation = ({ onChangeData, data }: Props) => {
 
     const familyGroupService = FamilyGroupService;
     const [familyGroups, setFamilyGroups] = useState<FamilyGroup[]>([])

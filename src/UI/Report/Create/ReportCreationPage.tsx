@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ConfirmationDialog } from './components/ConfirmationComponent/ConfirmationDialog'
 import { ReportCreation } from './components/ReportFormComponent/ReportCreation'
 import { Report } from '../../../Core/Reports/domain/model/Report'
 import { useToast } from '../../App/context/ToastContext'
 import { ReportService } from '../../../Core/Reports/infrastructure/service/ReportService'
+import { FamilyGroupService } from '../../../Core/FamilyGroups/infrastructure/service/FamiltyGroupService'
 
 const initialState: Report = {
     id: null,
@@ -28,14 +29,27 @@ const initialState: Report = {
 }
 
 export const ReportCreationPage = () => {
-
+    const { familyGroupId } = useParams()
     const service = ReportService;
+    const familyService = FamilyGroupService;
     const toast = useToast()
     const navigate = useNavigate();
 
     const [report, setReport] = useState<Report>(initialState)
     const [showDialog, setShowDialog] = useState(false);
     const [disabled, setDisabled] = useState(false)
+
+    useEffect(() => {
+        if (familyGroupId) {
+            const getFamilyGroupById = async () => {
+                const response = await familyService.getOneById.execute(familyGroupId)
+                console.log(response)
+                if (response.success)
+                    handleOnchangeData({ "familyGroup": response.data })
+            }
+            getFamilyGroupById()
+        }
+    }, [familyGroupId])
 
     const handleOnchangeData = (newValues: Object) => {
         console.log(newValues)
@@ -85,7 +99,7 @@ export const ReportCreationPage = () => {
     return (
         <div className="page-container">
             <div className='flex flex-col justify-start items-center w-full h-fit bg-transparent sm:mt-[5vh] md:mt-[5vh] rounded-md '>
-                <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-100 p-10 max-sm:bg-transparent rounded-md top-0 max-md:p-0`}>
+                <div className={`xl:w-[70%] lg:w-[70%] md:w-[90%] w-full h-fit bg-gray-50 p-10 max-sm:bg-transparent rounded-md top-0 max-md:p-0`}>
                     <div className='title-container'>
                         <h1 className='title-content'>Nuevo Reporte</h1>
                     </div>

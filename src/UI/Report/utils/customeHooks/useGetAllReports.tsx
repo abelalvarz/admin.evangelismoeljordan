@@ -8,33 +8,29 @@ export const useGetAllReports = () => {
 
     const [reports, setReports] = useState<Report[]>([])
     const [loading, setLoading] = useState(false)
-    const [rangeOfDate, setRangeOfDate] = useState<any>({
-        initial: null,
-        final: null
-    })
+    const [date, seDate] = useState<any>([])
 
     useEffect(() => {
-        if ((rangeOfDate.initial && rangeOfDate.final) && (rangeOfDate.initial < rangeOfDate.final)) {
+        if ((date[0] && date[1]) && (date[0] < date[1])) {
             getAllReports();
         }
-    }, [rangeOfDate])
+    }, [date])
 
     const getAllReports = async () => {
         setLoading(true)
 
-        const response = await reportService.getAllBetweenDates.execute(rangeOfDate.initial, rangeOfDate.final)
+        const response = await reportService.getAllBetweenDates.execute(date[0], date[1])
         setReports(response.data || [])
 
         setLoading(false)
     }
 
 
-    const handleRangeOnChange = (value: any) => setRangeOfDate((prev: any) => ({ ...prev, ...value }))
     return {
         reports,
         loading,
-        rangeOfDate,
-        handleRangeOnChange,
+        date,
+        seDate,
         
     }
 }

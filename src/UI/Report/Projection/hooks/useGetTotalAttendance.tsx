@@ -1,54 +1,37 @@
 import { useEffect, useState } from 'react'
 import { ReportService } from '../../../../Core/Reports/infrastructure/service/ReportService';
+import { AttendanceSummaryResponse, CategorySummary } from '../../../../Core/Reports/application/useCases';
 
 interface Prosp {
     initialDate: any;
     finalDate: any;
 }
 
-interface TotalAttendance {
-    labels: string[],
-    values: number[],
-    colors: string[]
-}
-
-const initialState = {
-    labels: [],
-    values: [],
-    colors: [],
-}
-
-
 export const useGetTotalAttendance = ({ initialDate, finalDate }: Prosp) => {
 
     const reportService = ReportService;
 
-    const [totalAttendance, setTotalAttendance] = useState<TotalAttendance>(initialState)
+    const [attendanceSummary, setAttendanceSummary] = useState<AttendanceSummaryResponse | null>(null)
+    const [categoriesSummary, setCategoriesSummary] = useState<CategorySummary | null>(null)
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         if (initialDate && finalDate) {
-            getWeekAttendance()
+            getSummaryReport();
         }
-    }, [initialDate, finalDate])
+    }, [initialDate,finalDate]);
 
-    const getWeekAttendance = async () => {
-        const response = await reportService.getTotalWeekAttendance.execute(initialDate, finalDate);
+    const getSummaryReport = async () => {
+        setLoading(true)
+        const response = await reportService.getSummaryReport.execute(initialDate, finalDate);
 
-        if (!response) return;
-
-        const newLabels: string[] = [];
-        const newValues: number[] = [];
-        const newColors: string[] = [];
-
-        response.data.forEach((item: any) => {
-            newLabels.push(item.familyGroup?.name || "");
-            newValues.push(parseInt(item.totalAttendance));
-            newColors.push(item.familyGroup?.color || "")
-        });
-
-        setTotalAttendance({ ...totalAttendance, labels: newLabels, values: newValues, colors: newColors });
+        setAttendanceSummary(response.data.attendanceSummary)
+        setCategoriesSummary(response.data.categoriesSummary)
+        setLoading(false)
     };
     return {
-        totalAttendance
+        attendanceSummary,
+        categoriesSummary,
+        loading
     }
 }

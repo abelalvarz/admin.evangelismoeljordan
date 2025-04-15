@@ -18,7 +18,10 @@ body {
 
 @layer utilities {
     .page-container {
-        @apply md:w-[85%] lg:w-[85%] lg:ml-[15%] md:ml-[15%] h-[100vh] p-5 bg-gray-200 overflow-y-scroll overflow-x-hidden min-w-[80vw]
+        @apply w-full h-full p-5 bg-[rgba(255,255,255,0.07)] overflow-y-scroll overflow-x-hidden scroll-smooth
+    }
+    .page-content {
+        @apply xl:h-full w-full flex flex-col xl:flex-row xl:justify-between py-5 overflow-y-scroll 
     }
 
     .report-detail-line {
@@ -26,11 +29,11 @@ body {
     }
 
     .title-container {
-        @apply flex justify-between items-end h-[5vh]
+        @apply flex justify-between items-center h-[5vh]
     }
 
     .title-content {
-        @apply text-4xl font-bold
+        @apply text-2xl font-bold
     }
 
     .graph-container {
@@ -48,4 +51,10 @@ body {
     .auth-field-content {
         @apply w-full p-2 rounded-full focus:outline-gray-500
     }
+    .resume-card-container{
+        @apply bg-gray-50 p-5 py-5 rounded-md flex items-center mr-1 max-md:mb-1 w-[23%]
+    }
+}
+::-webkit-scrollbar{
+    color: transparent;
 }
