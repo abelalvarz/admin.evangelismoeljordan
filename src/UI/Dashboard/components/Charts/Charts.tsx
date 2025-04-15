@@ -28,7 +28,7 @@ export const Charts = ({ groupsSummary, categoriesSummary,totalMonthSummary, loa
             </div>
             <div className="flex flex-col lg:flex-row justify-between h-[50%] mb-3 md:mb-0">
                 <div className="w-full lg:w-[100%] bg-white h-full p-5 rounded-md flex flex-col">
-                    <h1 className='text-xl text-gray-700 font-bold max-lg:text-xl mb-5'>Asistencia Total Ultimas 6 Semanas</h1>
+                    <h1 className='text-xl text-gray-700 font-bold max-lg:text-xl mb-5'>Asistencia Total Ultimas 4 Semanas</h1>
                     <div className="w-full h-full flex justify-center items-center">
                         <MonthAttendanceSummaryChar data={totalMonthSummary} loading={loading}/>
                     </div>
