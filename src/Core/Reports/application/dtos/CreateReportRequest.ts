@@ -16,7 +16,7 @@ export class CreateReportRequest {
         readonly vigilAttendance: number | null,
         readonly offering: number | null,
         readonly comments: string,
-        readonly meetingDate: Date,
+        readonly meetingDate: Date | null,
         readonly creationDate: Date,
         readonly createdBy: string
     ) { }

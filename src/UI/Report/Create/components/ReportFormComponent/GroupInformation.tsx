@@ -34,9 +34,11 @@ export const  GroupInformation = ({ onChangeData, data }: Props) => {
                     inputClassName='p-2'
                     showIcon
                     locale='es'
+                    maxDate={new Date()}
                     onChange={(e: any) => onChangeData({ 'meetingDate': e.target.value })}
                     className='w-fiull border-gray-300 border-x-2 border-y-2 rounded-md outline-none'
                 />
+                <small className='text-red-500 font-medium'>{data.meetingDate && new Date(data.meetingDate).getDay() === 3? '* Los dias mircoles no se realizan grupos, seleccione otro dia' : ''}</small>
             </div>
             <div className='w-full flex flex-col'>
                 <label>Grupo Familiar: </label>

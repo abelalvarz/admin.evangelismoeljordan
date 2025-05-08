@@ -1,5 +1,5 @@
 
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore/lite";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, Timestamp, updateDoc, where } from "firebase/firestore/lite";
 import { ReportRepository } from "../../domain/repository/ReportRepository";
 import { Report } from "../../domain/model/Report";
 import { firebaseApp } from "../../../Config/firebaseconfig";
@@ -8,8 +8,22 @@ const database = firebaseApp;
 const collectionName: string = "Reports";
 
 export class FirebaseReportRepository implements ReportRepository {
-
     private collection = collection(database, collectionName)
+
+    async existsReportBetweenDateAndGroup(groupId: string, startDate: Date, endDate: Date): Promise<boolean> {
+        const startTimestamp = Timestamp.fromDate(startDate);
+        const endTimestamp = Timestamp.fromDate(endDate);
+        const customQuery = query(
+            this.collection, 
+            where("meetingDate", ">=", startDate), 
+            where("meetingDate", "<=", endDate), 
+            where("familyGroup.id", "==", groupId)
+        )
+        const reports = await getDocs(customQuery);
+        console.log(reports.docs)
+        return reports.docs.length > 0;
+    }
+
 
     async getAllBetweenDates(startDate: Date, endDate: Date): Promise<Report[]> {
         const customeQuery = query(this.collection, where("meetingDate", ">=", startDate), where("meetingDate", "<=", endDate))
@@ -120,8 +134,8 @@ export class FirebaseReportRepository implements ReportRepository {
             vigilAttendance: report.vigilAttendance,
             offering: report.offering,
             comments: report.comments,
-            meetingDate: report.creationDate,
-            creationDate: report.createdBy,
+            meetingDate: report.meetingDate,
+            creationDate: report.creationDate,
             createdBy: report.createdBy,
             familyGroup: {
                 id: report.familyGroup?.id,

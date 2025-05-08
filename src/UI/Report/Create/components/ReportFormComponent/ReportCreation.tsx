@@ -8,6 +8,7 @@ import { OfferingStepperPanel } from './OfferingStepperPanel';
 import { GroupInformation } from './GroupInformation';
 import { StepperPanel } from 'primereact/stepperpanel';
 import { Report } from '../../../../../Core/Reports/domain/model/Report';
+import { useToast } from '../../../../App/context/ToastContext';
 
 interface Props {
     data: Report,
@@ -20,8 +21,18 @@ export const ReportCreation = ({ data, onChangeData, handleShowDialog, disabled 
 
     const stepperRef = useRef<any>(null);
     const [activeStep, setActiveStep] = useState(0)
+    const toast = useToast()
 
     const handleNextStep = () => {
+        if (activeStep === 0) {
+            if (!data.meetingDate) {
+                toast?.show('error', 'Error', 'La fecha es requerida')
+                return;
+            }else if (new Date(data.meetingDate).getDay() === 3) {
+                toast?.show('error', 'Error', 'Los dias mircoles no se realizan grupos, seleccione otro dia')
+                return;
+            }
+        }
         setActiveStep(activeStep + 1)
         stepperRef?.current?.nextCallback()
     }

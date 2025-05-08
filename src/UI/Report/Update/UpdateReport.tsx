@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ReportEditor } from '../utils/components/ReportEditor/ReportEditor'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Report } from '../../../Core/Reports/domain/model/Report';
 import { useToast } from '../../App/context/ToastContext';
 import { ReportService } from '../../../Core/Reports/infrastructure/service/ReportService';
@@ -28,7 +28,8 @@ const initialReportState = {
 }
 
 export const UpdateReport = () => {
-
+    
+    const navigate = useNavigate()
     const toast = useToast()
     const reportService = ReportService;
     const { id } = useParams()
@@ -64,6 +65,7 @@ export const UpdateReport = () => {
                 toast?.show('success', 'Exito', 'Actualizacion realizada exitosamente');
                 setDisable(true)
                 setShowConfirmation(false)
+                navigate("/")
             }).catch(() => {
                 toast?.show('error', 'Error', 'No se pudo realizar la actualizacion')
             })

@@ -6,4 +6,5 @@ export interface ReportRepository {
     delete(id: string): Promise<void>
     getAllBetweenDates(startDate: Date, endDate: Date): Promise<Report[]>
     getOneById(id: string): Promise<Report>
+    existsReportBetweenDateAndGroup(group: string, startDate: Date, endDate: Date): Promise<boolean>
 }

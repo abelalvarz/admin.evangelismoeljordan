@@ -1,11 +1,11 @@
 
 export const getPeriodTime = (weekBack: number) => {
-    const initDate = getInitTime(weekBack);
-    const finishDate = getFinishTime(weekBack)
+    const initDate = getStartTime(weekBack);
+    const finishDate = getEndTime(weekBack)
     return { initial: initDate, final: finishDate }
 };
 
-export const getInitTime = (weekBack: number) => {
+export const getStartTime = (weekBack: number) => {
     const date = new Date();
     const weekToReturn = date.getDay() > 3 ? 0 : 1
     const weekBackValue = weekToReturn+weekBack;
@@ -20,7 +20,7 @@ export const getInitTime = (weekBack: number) => {
     return newDate;
 }
 
-export const getFinishTime = (weekBack: number) => {
+export const getEndTime = (weekBack: number) => {
     const date = new Date();
     const weekToReturn = date.getDay() > 3 ? 0 : 1
     const weekBackValue = weekToReturn+weekBack;

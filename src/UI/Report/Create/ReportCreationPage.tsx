@@ -6,6 +6,7 @@ import { Report } from '../../../Core/Reports/domain/model/Report'
 import { useToast } from '../../App/context/ToastContext'
 import { ReportService } from '../../../Core/Reports/infrastructure/service/ReportService'
 import { FamilyGroupService } from '../../../Core/FamilyGroups/infrastructure/service/FamiltyGroupService'
+import { useAuth } from '../../App/context/AuthContext'
 
 const initialState: Report = {
     id: null,
@@ -25,12 +26,13 @@ const initialState: Report = {
     comments: "",
     meetingDate: new Date(),
     creationDate: new Date(),
-    createdBy: "test",
+    createdBy: "",
 }
 
 export const ReportCreationPage = () => {
     const { familyGroupId } = useParams()
     const service = ReportService;
+    const auth = useAuth()
     const familyService = FamilyGroupService;
     const toast = useToast()
     const navigate = useNavigate();
@@ -83,11 +85,12 @@ export const ReportCreationPage = () => {
         const visitorChildren = report.visitorChildren || 0
         const visitors = report.visitors || 0
         const totalAsistencia = 0 + 0 + activeMember + activeMemberChildren + noActiveMember + noActiveMemberChildren + visitorChildren + visitors
-        const reporToSubmit = { ...report, totalAttendance: totalAsistencia }
+        const reporToSubmit = { ...report, totalAttendance: totalAsistencia, createdBy: auth?.loggedUser.name || "" }
 
         const response = await service.create.execute(reporToSubmit)
         if (response === null || !response.success) {
-            toast?.show('error', "Error.", "El reporte no se pudo crear.");
+            toast?.show('error', "Error.", response.message);
+            setShowDialog(false)    
             return;
         }
 
