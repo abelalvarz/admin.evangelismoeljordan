@@ -1,5 +1,5 @@
 
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, Timestamp, updateDoc, where } from "firebase/firestore/lite";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore/lite";
 import { ReportRepository } from "../../domain/repository/ReportRepository";
 import { Report } from "../../domain/model/Report";
 import { firebaseApp } from "../../../Config/firebaseconfig";
@@ -11,8 +11,6 @@ export class FirebaseReportRepository implements ReportRepository {
     private collection = collection(database, collectionName)
 
     async existsReportBetweenDateAndGroup(groupId: string, startDate: Date, endDate: Date): Promise<boolean> {
-        const startTimestamp = Timestamp.fromDate(startDate);
-        const endTimestamp = Timestamp.fromDate(endDate);
         const customQuery = query(
             this.collection, 
             where("meetingDate", ">=", startDate), 
