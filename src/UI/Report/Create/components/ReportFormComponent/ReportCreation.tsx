@@ -29,7 +29,7 @@ export const ReportCreation = ({ data, onChangeData, handleShowDialog, disabled 
                 toast?.show('error', 'Error', 'La fecha es requerida')
                 return;
             }else if (new Date(data.meetingDate).getDay() === 3) {
-                toast?.show('error', 'Error', 'Los dias mircoles no se realizan grupos, seleccione otro dia')
+                toast?.show('error', 'Error', 'Los dias miercoles no se realizan grupos, seleccione otro dia')
                 return;
             }
         }

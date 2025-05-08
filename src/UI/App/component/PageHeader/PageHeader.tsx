@@ -57,6 +57,7 @@ export const PageHeader = ({ title, dateValue, dateOnChange }: any) => {
                     selectionMode='range'
                     value={dateValue}
                     locale="es"
+                    maxDate={new Date()}
                     onChange={(e) =>{ setSelectedFilter('calendar'), dateOnChange(e.value)}}
                     showIcon />
             </div>
