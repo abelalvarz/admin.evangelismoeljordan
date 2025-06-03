@@ -74,7 +74,7 @@ export const LineChart = ({value,label}:any) => {
     }, []);
 
     return (
-        <div className='w-full max-h-[100%] h-[90%] relative'>
+        <div className='w-full h-[300px] relative '>
             <Chart type="line" data={chartData} options={chartOptions} className='h-full w-full' />
         </div>
     )

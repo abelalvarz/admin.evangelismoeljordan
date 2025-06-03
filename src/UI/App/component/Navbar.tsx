@@ -38,8 +38,8 @@ export const Navbar = () => {
                     {
                         PrivateRoutes.map((route, i) => {
                             if (!route.icon) return;
-                            if (isSmallScreen() && route.path === '/proyectar')
-                                return;
+                            // if (isSmallScreen() && route.path === '/proyectar')
+                            //     return;
                             return (
                                 <Link
                                     key={i}

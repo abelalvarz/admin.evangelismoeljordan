@@ -3,6 +3,7 @@ import { BiFullscreen } from "react-icons/bi"
 import { BsFullscreenExit } from "react-icons/bs"
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
 import { FcNext, FcPrevious } from "react-icons/fc"
+import { isSmallScreen } from '../../../App/utils'
 
 interface Props {
     dataSize: number,
@@ -70,12 +71,14 @@ export const FullScreenComponent = ({ dataSize, handleOnchange, children }: Prop
                         <FcNext size={25} />
                     </button>
                 </div>
-                
-                <button
-                    onClick={toggleFullScreen}
-                    className={`absolute outline-none ${handle.active ? 'bottom-10 right-10' : 'bottom-5 right-5'}`}>
-                    {handle.active ? <BsFullscreenExit size={25} /> : <BiFullscreen size={25} />}
-                </button>
+                {
+                    !isSmallScreen() && <button
+                            onClick={toggleFullScreen}
+                            className={`absolute outline-none ${handle.active ? 'bottom-10 right-10' : 'bottom-5 right-5'}`}>
+                            {handle.active ? <BsFullscreenExit size={25} /> : <BiFullscreen size={25} />}
+                        </button>
+                }
+
             </FullScreen>
         </React.Fragment>
     )
