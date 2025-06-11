@@ -13,7 +13,7 @@ interface Props {
     isProjection?: boolean
 }
 
-export const ReportDetailComponent = ({ data, isProjection }: Props) => {
+export const ReportDetailComponent = ({ data }: Props) => {
     const reportService = ReportService;
     const { id } = useParams()
 
@@ -64,11 +64,9 @@ export const ReportDetailComponent = ({ data, isProjection }: Props) => {
             <div className="flex flex-col w-full box-border  justify-evenly ">
                 <AttendanceSection data={reportDetail} />
                 <EvangelismSection data={reportDetail} />
-                {
-                    !isProjection && (
-                        <OfferingSection data={reportDetail} />
-                    )
-                }
+
+                <OfferingSection data={reportDetail} />
+
             </div>
         </div>
     )
