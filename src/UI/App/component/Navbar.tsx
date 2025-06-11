@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { PrivateRoutes } from '../config/AppRoutes'
@@ -10,7 +10,7 @@ import { CgClose } from 'react-icons/cg'
 export const Navbar = () => {
 
     const auth = useAuth()
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
     const location = useLocation()
 
     if (!auth?.loggedUser.logged) {
@@ -22,13 +22,13 @@ export const Navbar = () => {
             <div className='md:hidden absolute top-0 rigth-0 w-full bg-red-200'>
                 <button
                     onClick={() => setVisible(!visible)}
-                    className="lg:hidden absolute flex justify-center items-center w-[40px] h-[40px] rounded-full right-10 top-3 z-20 ">
+                    className="lg:hidden absolute flex justify-center items-center w-[40px] h-[40px] rounded-full right-10 top-3 z-40 ">
                     <BiMenu className={` ${visible ? 'hidden' : 'visible'}`} size={25} />
                     <CgClose className={` ${visible ? 'visible text-white' : 'hidden'}`} size={25} />
                 </button>
             </div>
             {/* Menu content */}
-            <div className={`2xl:w-[15rem] xl:w-[12rem] md:w-[10rem] w-full md:z-0  fixed h-full z-10 duration-700 bg-slate-800 ${visible ? 'ml-0' : 'ml-[-200%]  '} md:ml-0`}>
+            <div className={`2xl:w-[15rem] xl:w-[12rem] md:w-[10rem] w-full md:z-0  fixed h-full z-30 duration-700 bg-slate-800 ${visible ? 'ml-0' : 'ml-[-200%]  '} md:ml-0`}>
                 <div className='px-5 py-5  flex flex-col '>
                     <h1 className='md:text-xl text-2xl font-bold text-white whitespace-nowrap'>Evangelismo</h1>
                     <small className='text-white'>El Jordan</small>

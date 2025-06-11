@@ -1,6 +1,6 @@
 import { Calendar } from "primereact/calendar"
 import { useEffect, useState } from "react"
-import { getPeriodTime } from "../../utils"
+import { getPeriodTime, isSmallScreen } from "../../utils"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 
@@ -23,7 +23,7 @@ export const PageHeader = ({ title, dateValue, dateOnChange }: any) => {
     }
 
     return (
-        <div className="w-full flex flex-col lg:flex-row justify-between lg:items-center ">
+        <div className={`w-full flex flex-col lg:flex-row justify-between lg:items-center ${isSmallScreen() ? 'fixed bg-[#f1f1f1] pt-3 top-0 z-10':''}`}>
             <div className="flex flex-col min-w-[18rem] ">
                 <h1 className="text-xl font-semibold">{title}</h1>
                 <small className="text-gray-600">

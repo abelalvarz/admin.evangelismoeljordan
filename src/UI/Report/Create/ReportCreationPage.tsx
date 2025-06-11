@@ -70,7 +70,7 @@ export const ReportCreationPage = () => {
             toast?.show('warn', 'Informacion', 'Debe seleccionar un grupo')
             return
         }
-        if (!report.activeMembers) {
+        if (report.activeMembers === null) {
             toast?.show('warn', 'Informacion', 'Campo Miembros activos es requerido')
             return
         }

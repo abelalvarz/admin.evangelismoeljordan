@@ -33,7 +33,7 @@ export const ReportViewPage = () => {
             <div className='w-full'>
                 <PageHeader title="Reportes" dateOnChange={(e: any) => setRangeOfDate(e)} dateValue={rangeOfDate} />
             </div>
-            <div className='page-content'>
+            <div className=' md:mt-0 mt-[12vh]'>
                 <div className='w-full'>
                     <TableComponent data={reports} loading={loading} />
                 </div>

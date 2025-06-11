@@ -19,7 +19,7 @@ body {
 
 @layer utilities {
     .page-container {
-        @apply w-full pl-3 pt-3 pb-3
+        @apply w-full pl-3 pt-3 pb-3 pr-3 bg-[#f1f1f1]
     }
     .page-content {
         @apply xl:h-full w-full flex flex-col xl:flex-row xl:justify-between mt-3

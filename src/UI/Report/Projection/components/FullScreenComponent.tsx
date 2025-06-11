@@ -64,10 +64,10 @@ export const FullScreenComponent = ({ dataSize, handleOnchange, children }: Prop
                 {children}
 
                 <div className="w-full  absolute flex justify-between">
-                    <button className="right-0 outline-none hover:bg-gray-200 p-5 rounded-full" onClick={handlePrev}>
+                    <button className={isSmallScreen() ? '':'right-0 outline-none hover:bg-gray-200 p-5 rounded-full'} onClick={handlePrev}>
                         <FcPrevious size={25} />
                     </button>
-                    <button className="right-0 outline-none hover:bg-gray-200 p-5 rounded-full" onClick={handleNext}>
+                    <button className={isSmallScreen() ? '':'right-0 outline-none hover:bg-gray-200 p-5 rounded-full'} onClick={handleNext}>
                         <FcNext size={25} />
                     </button>
                 </div>

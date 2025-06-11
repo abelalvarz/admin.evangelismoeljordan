@@ -33,7 +33,7 @@ export const ReportProjectionPage = () => {
                 <PageHeader title="Presentación de Reportes" dateOnChange={(e: any) => seDate(e)} dateValue={date} />
             </div>
 
-            <div className="mt-3 w-full h-[95vh]">
+            <div className="w-full h-[95vh] md:mt-0 mt-[12vh]">
                 <FullScreenComponent dataSize={projectionData.length} handleOnchange={setActive}>
 
                     <div className="w-full h-full bg-gray-50 flex justify-center items-center rounded-lg">

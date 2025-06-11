@@ -58,7 +58,7 @@ export const Dashboard = () => {
                     dateValue={date}
                     dateOnChange={(e: any) => setDate(e)} />
             </div>
-            <div className="pt-3 h-[100vh]">
+            <div className="pt-3 h-[100vh] md:mt-0 mt-[10vh]">
                 <div className={`w-full h-full flex flex-col  2xl:w-[100%] xl:w-[100%]`}>
                     <ResumeCards
                         summary={summary}

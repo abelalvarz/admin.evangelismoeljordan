@@ -30,7 +30,7 @@ export const OfferingStepperPanel = ({ onChangeData, data, disabled }: Props) =>
                 <InputTextarea
                     value={data.comments}
                     onChange={(e: any) => onChangeData({ 'comments': e.target.value })}
-                    className='border-gray-300 border-x-2 border-y-2 outline-none'
+                    className='border-gray-300 border-x-2 border-y-2 outline-none p-3'
                     disabled={disabled}
                     autoResize rows={5} cols={30} />
             </div>
