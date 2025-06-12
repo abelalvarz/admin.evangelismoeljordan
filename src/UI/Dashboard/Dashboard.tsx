@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Charts } from "./components/Charts"
 import { PageHeader } from "../App/component/PageHeader"
 import { ResumeCards } from "./components/ResumeCards"
